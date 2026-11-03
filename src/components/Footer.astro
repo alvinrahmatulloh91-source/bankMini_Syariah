@@ -1,0 +1,81 @@
+---
+/**
+ * FOOTER SECTION
+ * Redesain: Hijau & Oranye
+ */
+
+interface Props {
+  data: any;
+  navData: any;
+  lang: string;
+}
+
+const { data, navData, lang } = Astro.props;
+const isIndonesian = lang === 'id';
+const currentYear = new Date().getFullYear();
+const copyright = data.copyright.replace('{year}', currentYear.toString());
+---
+
+<footer class="bg-brand-green-deep text-white pt-24 pb-12 relative overflow-hidden">
+  <!-- Ornamen Latar -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+      <!-- Info LKM -->
+      <div class="lg:col-span-5">
+        <a href="#home" class="flex items-center gap-4 mb-8 group">
+          <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-brand-green group-hover:bg-brand-orange group-hover:text-brand-green-deep transition-colors duration-200 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-black leading-tight">LKM Mitra Siswa Abadi</h2>
+            <p class="text-[10px] text-brand-green-soft uppercase tracking-[0.3em] font-black group-hover:text-brand-orange transition-colors">SMKN 1 BANTUL</p>
+          </div>
+        </a>
+        <p class="text-brand-green-soft/70 text-lg font-medium leading-relaxed mb-10 max-w-md">
+          {data.motto}
+        </p>
+      </div>
+
+      <!-- Navigasi -->
+      <div class="lg:col-span-3">
+        <h4 class="text-sm font-black text-brand-orange uppercase tracking-[0.2em] mb-8">{isIndonesian ? 'Navigasi' : 'Navigation'}</h4>
+        <ul class="space-y-4">
+          {Object.entries(navData).map(([key, label], idx) => (
+            <li>
+              <a href={`#${key}`} class="text-brand-green-soft hover:text-brand-orange transition-all duration-200 font-bold text-sm inline-block hover:translate-x-1">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Info Sekolah -->
+      <div class="lg:col-span-4">
+        <h4 class="text-sm font-black text-brand-orange uppercase tracking-[0.2em] mb-8">SMKN 1 Bantul</h4>
+        <p class="text-brand-green-soft/70 text-sm font-bold leading-relaxed mb-6">
+          Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188
+        </p>
+        <div class="p-6 bg-white/5 rounded-2xl border border-white/5 group/email transition-colors hover:bg-white/10">
+           <p class="text-[10px] text-brand-green uppercase tracking-widest font-black mb-2">{isIndonesian ? 'Email Sekolah' : 'School email'}</p>
+           <a class="text-sm font-bold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white transition-all" href="mailto:info@smkn1bantul.sch.id">info@smkn1bantul.sch.id</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      <p class="text-xs text-brand-green-soft/75 font-bold">
+        {copyright}
+      </p>
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] text-brand-green-soft/70 font-black uppercase tracking-widest">{isIndonesian ? 'Dibangun dengan' : 'Built with'}</span>
+        <span class="text-[10px] text-brand-green-deep font-black uppercase tracking-widest bg-brand-orange px-2 py-1 rounded">Astro</span>
+      </div>
+    </div>
+  </div>
+</footer>

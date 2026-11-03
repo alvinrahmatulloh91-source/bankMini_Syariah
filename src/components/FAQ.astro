@@ -1,0 +1,49 @@
+---
+/**
+ * KOMPONEN FAQ
+ */
+
+interface Props {
+  data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="py-24 bg-white overflow-hidden">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col lg:flex-row gap-16">
+      <div class="flex-1 max-w-xl reveal reveal-fade-right">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-green-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-green/10">
+          {data.label}
+        </div>
+        <h2 class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-8">
+          {data.headline}
+        </h2>
+        <p class="text-xl text-brand-text-secondary font-medium leading-relaxed">
+          {data.description}
+        </p>
+      </div>
+
+      <div class="flex-1 space-y-4 reveal reveal-fade-left">
+        {data.items.map((item: any) => (
+          <details class="group rounded-2xl border border-brand-border bg-brand-bg transition-colors duration-200 open:border-brand-green/20 open:bg-brand-green-light">
+            <summary class="flex justify-between items-center p-6 cursor-pointer list-none rounded-2xl">
+              <span class="text-lg font-black text-brand-green-dark group-open:text-brand-green transition-colors">
+                {item.q}
+              </span>
+              <span class="faq-chevron w-8 h-8 bg-white rounded-lg flex items-center justify-center text-brand-green border border-brand-border shadow-sm">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-brand-text-secondary font-medium leading-relaxed border-t border-brand-green/5 pt-4 overflow-hidden transition-all duration-300">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

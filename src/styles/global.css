@@ -1,0 +1,454 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #16834A;
+  --color-brand-green-dark: #105C38;
+  --color-brand-green-deep: #0B3D2E;
+  --color-brand-green-soft: #EAF5EE;
+  --color-brand-green-light: #F4FAF5;
+
+  --color-brand-orange: #F28C28;
+  --color-brand-orange-dark: #D96F12;
+  --color-brand-orange-soft: #FFF2E5;
+
+  --color-brand-bg: #F8FAF8;
+  --color-brand-text-primary: #17251D;
+  --color-brand-text-secondary: #64746A;
+  --color-brand-border: #E5EBE6;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion Tokens */
+  --motion-fast: 180ms;
+  --motion-normal: 350ms;
+  --motion-slow: 600ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-brand-bg text-brand-text-primary font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scroll Progress Bar */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-brand-green);
+    z-index: 100;
+    transform: scaleX(0);
+    transform-origin: left center;
+    pointer-events: none;
+  }
+
+  #scroll-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-brand-orange-dark);
+  }
+
+  #main-nav {
+    background: rgb(255 255 255 / 0.84);
+    border-bottom-color: transparent;
+    backdrop-filter: blur(10px);
+    transition: background-color var(--motion-normal) var(--ease-in-out-soft),
+                border-color var(--motion-normal) var(--ease-in-out-soft),
+                box-shadow var(--motion-normal) var(--ease-in-out-soft);
+  }
+
+  #main-nav[data-scrolled='true'] {
+    background: #fff;
+    border-bottom-color: var(--color-brand-border);
+    box-shadow: 0 4px 16px rgb(11 61 46 / 0.06);
+  }
+
+  #main-nav .mobile-menu {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.4rem) scale(0.985);
+    transform-origin: top right;
+    transition: opacity var(--motion-fast) var(--ease-out-expo),
+                transform var(--motion-fast) var(--ease-out-expo);
+  }
+
+  #main-nav details[open] .mobile-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  #main-nav a[data-section-link] .nav-underline {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--motion-normal) var(--ease-out-expo);
+  }
+
+  #main-nav a[data-section-link]:hover .nav-underline,
+  #main-nav a[data-section-link][aria-current='location'] .nav-underline {
+    transform: scaleX(1);
+  }
+
+  #main-nav a.primary-nav-link[aria-current='location'] {
+    color: var(--color-brand-green-dark);
+  }
+
+  #main-nav .mobile-menu a[aria-current='location'] {
+    background: var(--color-brand-green-soft);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-orange-dark);
+    outline-offset: 3px;
+  }
+
+  a:active,
+  summary:active {
+    transform: translateY(1px);
+  }
+
+  summary::marker {
+    content: '';
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-fade-up {
+    --reveal-offset-x: 0px;
+    --reveal-offset-y: 18px;
+  }
+
+  .reveal-fade-in {
+    --reveal-offset-x: 0px;
+    --reveal-offset-y: 0px;
+  }
+
+  .reveal-fade-left {
+    --reveal-offset-x: -18px;
+    --reveal-offset-y: 0px;
+  }
+
+  .reveal-fade-right {
+    --reveal-offset-x: 18px;
+    --reveal-offset-y: 0px;
+  }
+
+  html.motion-ready .reveal {
+    opacity: 0;
+    transform: translate3d(var(--reveal-offset-x, 0px), var(--reveal-offset-y, 18px), 0);
+    transition: opacity var(--motion-normal) var(--ease-out-expo),
+                transform var(--motion-normal) var(--ease-out-expo);
+  }
+
+  html.motion-ready .reveal.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .stagger-1 { transition-delay: 60ms; }
+  .stagger-2 { transition-delay: 120ms; }
+  .stagger-3 { transition-delay: 180ms; }
+  .stagger-4 { transition-delay: 240ms; }
+  .stagger-5 { transition-delay: 300ms; }
+}
+
+@supports (animation-timeline: scroll(root block)) {
+  #scroll-progress {
+    animation: read-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes read-progress {
+  to { transform: scaleX(1); }
+}
+
+@supports (animation-timeline: view(block)) and (animation-range: entry 0% entry 45%) {
+  html.native-view-timeline .timeline-row[data-scroll-reveal] {
+    animation: timeline-arrive linear both;
+    animation-timeline: view(block);
+    animation-range: entry 0% entry 45%;
+  }
+}
+
+@keyframes timeline-arrive {
+  from { opacity: 0; transform: translate3d(0, 1.25rem, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.timeline-spine {
+  transform: scaleY(1);
+  transform-origin: top center;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-chevron {
+  transition: transform var(--motion-fast) var(--ease-out-expo),
+              background-color var(--motion-fast) var(--ease-out-expo);
+}
+
+details[open] .faq-chevron {
+  transform: rotate(180deg);
+  background-color: var(--color-brand-green-soft);
+}
+
+@supports selector(details::details-content) and (interpolate-size: allow-keywords) {
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    interpolate-size: allow-keywords;
+    transition: block-size var(--motion-normal) var(--ease-out-expo);
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+}
+
+.reveal-clip .reveal-mask {
+  clip-path: inset(0 100% 0 0 round 1rem);
+  transition: clip-path 700ms var(--ease-out-expo);
+}
+
+.reveal-clip.active .reveal-mask {
+  clip-path: inset(0 0 0 0 round 1rem);
+}
+
+.location-pin {
+  transition: transform 500ms var(--ease-out-expo), opacity 300ms ease;
+}
+
+html.motion-ready .reveal-clip:not(.active) .location-pin {
+  opacity: 0;
+  transform: translateY(-0.75rem) scale(0.88);
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-brand-green-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.hero-rule {
+  display: inline-block;
+  width: 2rem;
+  height: 2px;
+  background: var(--color-brand-orange);
+  transform-origin: left center;
+}
+
+.hero-headline span {
+  display: inline-block;
+}
+
+.hero-cta {
+  transition: color var(--motion-fast) var(--ease-in-out-soft),
+              background-color var(--motion-fast) var(--ease-in-out-soft),
+              border-color var(--motion-fast) var(--ease-in-out-soft),
+              transform var(--motion-fast) var(--ease-out-expo),
+              box-shadow var(--motion-fast) var(--ease-in-out-soft);
+}
+
+.hero-cta:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.hero-visual {
+  isolation: isolate;
+}
+
+.hero-visual-art {
+  transition: transform 550ms var(--ease-out-expo);
+}
+
+.hero-visual:hover .hero-visual-art {
+  transform: scale(1.025);
+}
+
+.hero-accent-line {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 4rem;
+  height: 3px;
+  background: var(--color-brand-orange);
+  transform-origin: left center;
+}
+
+.service-row {
+  transition: transform var(--motion-fast) var(--ease-out-expo);
+}
+
+.service-row:hover {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rule {
+    animation: line-grow 520ms var(--ease-out-expo) 80ms both;
+  }
+
+  .hero-headline span {
+    animation: title-curtain 760ms var(--ease-out-expo) 100ms both;
+  }
+
+  .hero-copy {
+    animation: copy-arrive 620ms var(--ease-out-expo) 220ms both;
+  }
+
+  .hero-cta-primary {
+    animation: copy-arrive 520ms var(--ease-out-expo) 280ms both;
+  }
+
+  .hero-cta-secondary {
+    animation: copy-arrive 520ms var(--ease-out-expo) 350ms both;
+  }
+
+  .hero-visual {
+    animation: visual-curtain 820ms var(--ease-out-expo) 160ms both;
+  }
+
+  .hero-accent-line {
+    animation: line-grow 580ms var(--ease-out-expo) 600ms both;
+  }
+}
+
+@keyframes title-curtain {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes visual-curtain {
+  from { clip-path: inset(0 0 0 100% round 1rem); }
+  to { clip-path: inset(0 round 1rem); }
+}
+
+@keyframes copy-arrive {
+  from { opacity: 0; transform: translateY(0.65rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scroll-progress {
+    display: none;
+    animation: none !important;
+  }
+
+  .reveal,
+  html.motion-ready .reveal,
+  html.motion-ready .reveal.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-rule,
+  .hero-headline span,
+  .hero-copy,
+  .hero-cta,
+  .hero-visual,
+  .hero-accent-line,
+  .reveal-clip .reveal-mask,
+  .location-pin,
+  .faq-chevron {
+    animation: none !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .timeline-row[data-scroll-reveal] {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --motion-normal: 260ms;
+    --motion-slow: 420ms;
+  }
+
+  .hero-accent-line {
+    width: 2.5rem;
+  }
+
+  .hero-visual:hover .hero-visual-art,
+  .service-row:hover {
+    transform: none;
+  }
+
+  .reveal-fade-left,
+  .reveal-fade-right {
+    --reveal-offset-x: 0px;
+    --reveal-offset-y: 12px;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .hero-headline span {
+    animation-duration: 520ms;
+    animation-delay: 60ms;
+  }
+
+  .hero-copy {
+    animation-duration: 420ms;
+    animation-delay: 140ms;
+  }
+
+  .hero-cta-primary {
+    animation-duration: 400ms;
+    animation-delay: 190ms;
+  }
+
+  .hero-cta-secondary {
+    animation-duration: 400ms;
+    animation-delay: 240ms;
+  }
+
+  .hero-visual {
+    animation-duration: 560ms;
+    animation-delay: 80ms;
+  }
+}

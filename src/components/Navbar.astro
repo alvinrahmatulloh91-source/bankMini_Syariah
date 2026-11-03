@@ -1,0 +1,98 @@
+---
+/**
+ * KOMPONEN NAVBAR (NAVIGASI)
+ * Redesain: Hijau & Oranye
+ */
+
+interface Props {
+  data: any;
+  lang: string;
+}
+
+const { data, lang } = Astro.props;
+---
+
+<nav
+  id="main-nav"
+  data-scrolled="false"
+  aria-label={lang === 'id' ? 'Navigasi utama' : 'Main navigation'}
+  class="fixed top-0 z-50 w-full border-b"
+>
+  <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+
+    <!-- Identitas LKM -->
+    <a href={lang === 'id' ? '/' : '/en'} class="flex items-center gap-3 group">
+      <div class="w-10 h-10 bg-brand-green rounded-xl flex items-center justify-center text-white group-hover:bg-brand-green-dark transition-all duration-300 group-hover:scale-105 shadow-md shadow-brand-green/20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+      </div>
+      <div>
+        <span class="text-sm font-extrabold text-brand-green-dark leading-tight">LKM Mitra Siswa Abadi</span>
+        <p class="text-[9px] text-brand-text-secondary uppercase tracking-widest font-bold group-hover:text-brand-green transition-colors">SMKN 1 BANTUL</p>
+      </div>
+    </a>
+
+    <!-- Menu Navigasi Desktop -->
+    <div class="hidden lg:flex items-center gap-8">
+      {Object.entries(data).map(([key, label]) => (
+        key !== 'contact' && (
+          <a
+            href={`#${key}`}
+            data-section-link
+            class="primary-nav-link text-sm font-bold text-brand-text-secondary hover:text-brand-green transition-all relative group py-2"
+          >
+            {label}
+            <span class="nav-underline absolute bottom-0 left-0 h-0.5 w-full bg-brand-green"></span>
+          </a>
+        )
+      ))}
+    </div>
+
+    <!-- Aksi & Bahasa -->
+    <div class="flex items-center gap-3 sm:gap-6">
+      <!-- Selector Bahasa -->
+      <div class="hidden sm:flex bg-brand-green-light p-1 rounded-lg border border-brand-green/10">
+        <a
+          href="/"
+          class={`px-3 py-1 text-[10px] font-black rounded-md transition-all duration-200 ${lang === 'id' ? 'bg-white text-brand-green shadow-sm' : 'text-brand-text-secondary hover:text-brand-green hover:bg-white/50'}`}
+        >
+          ID
+        </a>
+        <a
+          href="/en"
+          class={`px-3 py-1 text-[10px] font-black rounded-md transition-all duration-200 ${lang === 'en' ? 'bg-white text-brand-green shadow-sm' : 'text-brand-text-secondary hover:text-brand-green hover:bg-white/50'}`}
+        >
+          EN
+        </a>
+      </div>
+
+      <!-- Tombol Kontak Mobile/Desktop -->
+      <a
+        href="#contact"
+        data-section-link
+        class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-brand-orange text-brand-text-primary rounded-xl text-sm font-bold transition-colors duration-200 hover:bg-brand-green-deep hover:text-white active:translate-y-px"
+      >
+        <span>{data.contact}</span>
+      </a>
+
+      <details class="relative lg:hidden group/mobile">
+        <summary class="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-3 text-sm font-bold text-brand-green-dark hover:bg-brand-green-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green transition-colors">
+          <span>{lang === 'id' ? 'Menu' : 'Menu'}</span>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="menu-chevron h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.09 1.032l-4.25 4.5a.75.75 0 01-1.09 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>
+        </summary>
+        <div class="mobile-menu absolute right-0 top-full mt-3 w-[min(20rem,calc(100vw-2rem))] rounded-xl border border-brand-border bg-white p-4 shadow-xl">
+          <div class="grid gap-1">
+            {Object.entries(data).map(([key, label]) => (
+              <a href={`#${key}`} data-section-link class="rounded-lg px-3 py-3 text-sm font-semibold text-brand-text-primary hover:bg-brand-green-light focus-visible:outline-2 focus-visible:outline-brand-green transition-colors">{label}</a>
+            ))}
+          </div>
+          <div class="mt-3 flex gap-2 border-t border-brand-border pt-3">
+            <a href="/" lang="id" class="rounded-md px-3 py-2 text-sm font-bold text-brand-green-dark hover:bg-brand-green-light transition-colors">Bahasa Indonesia</a>
+            <a href="/en" lang="en" class="rounded-md px-3 py-2 text-sm font-bold text-brand-green-dark hover:bg-brand-green-light transition-colors">English</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</nav>

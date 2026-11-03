@@ -1,0 +1,100 @@
+---
+/**
+ * SERVICES SECTION
+ * Redesain: Hijau & Oranye
+ */
+
+interface Props {
+  data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<section id="services" class="py-24 bg-brand-bg relative overflow-hidden">
+  <div class="container mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-20 reveal reveal-fade-up">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-green-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-green/10">
+        {data.label}
+      </div>
+      <h2 class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-6">
+        {data.headline}
+      </h2>
+      <p class="text-xl text-brand-text-secondary max-w-2xl mx-auto font-medium">
+        {data.subheadline}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
+      <!-- BSI Agen -->
+      <div class="service-feature reveal reveal-fade-up stagger-1 group rounded-[2rem] border border-brand-border border-t-4 border-t-brand-orange bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-lg md:p-10">
+        <div class="flex flex-col md:flex-row gap-10">
+          <div class="w-24 h-24 bg-brand-green-light rounded-3xl flex items-center justify-center flex-shrink-0">
+             <div class="text-center">
+                <span class="text-2xl font-black text-brand-green">BSI *</span>
+                <p class="text-[9px] font-black text-brand-green/50 tracking-tighter uppercase">Official Agent</p>
+             </div>
+          </div>
+          <div>
+            <h3 class="text-3xl font-black text-brand-green-dark mb-4">{data.bsi_agen.title}</h3>
+            <p class="text-brand-text-secondary font-bold mb-8 leading-relaxed">{data.bsi_agen.description}</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {data.bsi_agen.items.map((item: string, idx: number) => (
+                <div class="service-row group/service-row flex items-center gap-3">
+                  <div class="w-5 h-5 bg-brand-green/10 rounded-full flex items-center justify-center text-brand-green transition-colors duration-200 group-hover/service-row:bg-brand-green group-hover/service-row:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span class="text-sm font-bold text-brand-text-primary">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabungan Siswa -->
+      <div class="reveal reveal-fade-up stagger-2 relative overflow-hidden rounded-[2rem] border border-white/5 bg-brand-green-deep p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl md:p-10 group">
+        <!-- Aksen Oranye -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-orange/20 blur-3xl -z-0 transition-opacity duration-500 group-hover:opacity-100 opacity-50"></div>
+
+        <div class="relative z-10">
+          <div class="flex flex-col md:flex-row gap-10 mb-10">
+            <div class="w-24 h-24 bg-white/10 rounded-3xl flex items-center justify-center flex-shrink-0 border border-white/5">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-3xl font-black text-white mb-4">{data.tabungan.title}</h3>
+              <p class="text-brand-green-soft/70 font-bold leading-relaxed">{data.tabungan.description}</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {data.tabungan.features.map((feature: string, idx: number) => (
+              <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-brand-green-deep rounded-lg flex items-center justify-center text-white flex-shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-sm font-bold text-white leading-tight">{feature}</span>
+              </div>
+            ))}
+          </div>
+
+          <a href="#contact" class="mt-12 inline-flex items-center gap-3 px-8 py-4 bg-white text-brand-green-deep rounded-2xl font-black text-sm transition-colors duration-200 hover:bg-brand-orange hover:text-brand-text-primary shadow-lg active:translate-y-px">
+            Info Selengkapnya
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  data: any;
+  lang: string;
+}
+
+const { data, lang } = Astro.props;
+---
+
+<section id="home" class="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
+  <div aria-hidden="true" class="absolute right-0 top-0 -z-10 h-full w-[28%] translate-x-16 skew-x-[-12deg] bg-brand-green-light"></div>
+
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
+      <div class="flex-1 text-center lg:text-left">
+        <div class="hero-kicker mb-7">
+          <span class="hero-rule" aria-hidden="true"></span>
+          {data.label}
+        </div>
+
+        <h1 class="hero-headline mb-8 text-4xl font-black leading-[1.05] text-brand-green-deep md:text-6xl lg:text-7xl">
+          <span>{data.headline}</span>
+        </h1>
+
+        <p class="hero-copy mx-auto mb-10 max-w-2xl text-lg font-medium leading-relaxed text-brand-text-secondary md:text-xl lg:mx-0">
+          {data.subheadline}
+        </p>
+
+        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+          <a href="#services" class="hero-cta hero-cta-primary group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-green px-8 py-4 text-base font-bold text-white hover:-translate-y-0.5 hover:bg-brand-green-dark hover:shadow-lg hover:shadow-brand-green/15 active:translate-y-0 sm:w-auto">
+            {data.cta_primary}
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+
+          <a href="#contact" class="hero-cta hero-cta-secondary flex w-full items-center justify-center gap-2 rounded-xl border border-brand-green/30 bg-white px-8 py-4 text-base font-bold text-brand-green hover:-translate-y-0.5 hover:bg-brand-green-soft active:translate-y-0 sm:w-auto">
+            {data.cta_secondary}
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual relative w-full max-w-2xl flex-1">
+        <div class="group/hero-img relative z-10 aspect-[4/3] overflow-hidden rounded-2xl border border-brand-border bg-brand-green-light">
+          <span class="hero-accent-line" aria-hidden="true"></span>
+          <div class="hero-visual-art absolute inset-0 flex items-center justify-center">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 text-brand-green/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <p class="absolute bottom-5 left-5 right-5 border-l-2 border-brand-orange bg-white px-4 py-3 text-sm font-semibold leading-relaxed text-brand-green-deep">
+            {lang === 'en' ? 'A learning space for sharia banking practice' : 'Ruang belajar praktik perbankan syariah'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

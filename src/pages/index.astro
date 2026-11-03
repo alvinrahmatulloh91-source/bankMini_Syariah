@@ -1,0 +1,42 @@
+---
+import MainLayout from '@layouts/MainLayout.astro';
+import Navbar from '@components/Navbar.astro';
+import Hero from '@components/Hero.astro';
+import About from '@components/About.astro';
+import Services from '@components/Services.astro';
+import ServiceProcess from '@components/ServiceProcess.astro';
+import Advantages from '@components/Advantages.astro';
+import OperationInfo from '@components/OperationInfo.astro';
+import FAQ from '@components/FAQ.astro';
+import Location from '@components/Location.astro';
+import Footer from '@components/Footer.astro';
+import RoomGallery from '@components/RoomGallery.astro';
+import { getCollection } from 'astro:content';
+import { siteContentSchema } from '@data/siteContentSchema';
+
+import rawData from '@data/id.json';
+const data = siteContentSchema.parse(rawData);
+const roomGallery = await getCollection('roomGallery');
+---
+
+<MainLayout
+  title="LKM Mitra Siswa Abadi - Bank Mini Syariah SMKN 1 Bantul"
+  description={data.hero.subheadline}
+  lang="id"
+>
+  <Navbar data={data.nav} lang="id" />
+
+  <main>
+    <Hero data={data.hero} lang="id" />
+    <About data={data.about} />
+    <Services data={data.services} />
+    <RoomGallery data={data.space} address={data.location.address} lang="id" items={roomGallery} />
+    <ServiceProcess data={data.process} />
+    <Advantages data={data.advantages} />
+    <OperationInfo data={data.operation} />
+    <FAQ data={data.faq} />
+    <Location data={data.location} contactData={data.contact} />
+  </main>
+
+  <Footer data={data.footer} navData={data.nav} lang="id" />
+</MainLayout>

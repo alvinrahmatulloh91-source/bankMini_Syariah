@@ -1,0 +1,275 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { SiteContent } from '../data/siteContentSchema';
+
+interface Props {
+  data: SiteContent['space'];
+  address: string;
+  lang: 'id' | 'en';
+  items: CollectionEntry<'roomGallery'>[];
+}
+
+const { data, address, lang, items } = Astro.props;
+const visibleItems = [...items]
+  .filter((item) => item.data.published)
+  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.order - b.data.order);
+const categories = [...new Set(visibleItems.map((item) => item.data.category))];
+---
+
+<section id="explore" class="space-section" aria-labelledby="space-title">
+  <div class="space-shell">
+    <header class="space-heading reveal reveal-fade-right">
+      <p class="space-eyebrow"><span aria-hidden="true"></span>{data.eyebrow}</p>
+      <h2 id="space-title">{data.title}</h2>
+      <p>{data.description}</p>
+    </header>
+
+    <div class="space-overview">
+      <div class="space-overview__copy reveal reveal-fade-left">
+        <p class="space-kicker">{data.locationLabel}</p>
+        <h3>{data.roomTitle}</h3>
+        <p>{data.roomDescription}</p>
+        <address>{address}</address>
+      </div>
+      <div class="space-overview__figure reveal reveal-clip" aria-label={data.roomTitle}>
+        {visibleItems.find((item) => item.data.featured) ? (
+          (() => {
+            const featured = visibleItems.find((item) => item.data.featured)!;
+            return <img class="reveal-mask" src={featured.data.image} width={featured.data.width} height={featured.data.height} alt={featured.data.alt[lang]} loading="lazy" decoding="async" />;
+          })()
+        ) : (
+          <div class="space-placeholder reveal-mask" role="img" aria-label={data.emptyTitle}>
+            <svg aria-hidden="true" viewBox="0 0 48 48" fill="none">
+              <path d="M8 38V14.5L24 6l16 8.5V38M4 42h40M17 42V27h14v15M16 17h.01M24 17h.01M32 17h.01M16 23h.01M32 23h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>{data.emptyTitle}</span>
+          </div>
+        )}
+        <span class="space-photo-caption">{data.roomTitle}</span>
+      </div>
+    </div>
+
+    <aside class="learning-note reveal reveal-fade-left" aria-labelledby="learning-title">
+      <p class="space-kicker">{data.learningLabel}</p>
+      <h3 id="learning-title">{data.learningTitle}</h3>
+      <p>{data.learningText}</p>
+    </aside>
+
+    <div class="gallery-heading">
+      <div>
+        <p class="space-kicker">{data.eyebrow}</p>
+        <h3>{data.galleryTitle}</h3>
+        <p>{data.galleryDescription}</p>
+      </div>
+      {visibleItems.length > 0 && (
+        <div class="gallery-filters" role="group" aria-label={data.galleryFilterLabel}>
+          <button type="button" class="gallery-filter is-active" data-gallery-filter="all" aria-pressed="true">{data.allCategories}</button>
+          {categories.map((category) => <button type="button" class="gallery-filter" data-gallery-filter={category} aria-pressed="false">{category}</button>)}
+        </div>
+      )}
+    </div>
+
+    {visibleItems.length > 0 ? (
+      <div class="gallery-grid" data-gallery-grid>
+        {visibleItems.map((item, index) => (
+          <button
+            type="button"
+            class:list={['gallery-item', { 'gallery-item--featured': item.data.featured }]}
+            data-gallery-item
+            data-category={item.data.category}
+            data-description={item.data.description[lang]}
+            data-index={index}
+            aria-label={`${data.openImage}: ${item.data.title[lang]}`}
+          >
+            <img src={item.data.image} width={item.data.width} height={item.data.height} alt={item.data.alt[lang]} loading="lazy" decoding="async" />
+            <span class="gallery-item__meta"><span>{item.data.category}</span><strong>{item.data.title[lang]}</strong></span>
+          </button>
+        ))}
+      </div>
+    ) : (
+      <div class="gallery-empty">
+        <div class="gallery-empty__rule" aria-hidden="true"></div>
+        <div>
+          <h4>{data.emptyTitle}</h4>
+          <p>{data.emptyText}</p>
+        </div>
+      </div>
+    )}
+
+    <div class="category-note">
+      <span>{data.categories}</span>
+      <ul>
+        {data.requestedCategories.map((category) => <li>{category}</li>)}
+      </ul>
+      <p>{data.categoryDisclaimer}</p>
+    </div>
+  </div>
+
+  <dialog class="gallery-dialog" aria-label={data.galleryTitle}>
+    <div class="gallery-dialog__bar">
+      <p class="gallery-dialog__category"></p>
+      <button type="button" class="gallery-dialog__close" aria-label={data.close} data-gallery-close>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+      </button>
+    </div>
+    <div class="gallery-dialog__image-wrap"><img class="gallery-dialog__image" alt="" /></div>
+    <div class="gallery-dialog__footer">
+      <div><h3 class="gallery-dialog__title"></h3><p class="gallery-dialog__description"></p></div>
+      <div class="gallery-dialog__controls">
+        <button type="button" data-gallery-previous aria-label={data.previous}>←</button>
+        <button type="button" data-gallery-next aria-label={data.next}>→</button>
+      </div>
+    </div>
+  </dialog>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.space-section').forEach((section) => {
+    const dialog = section.querySelector<HTMLDialogElement>('.gallery-dialog');
+    const grid = section.querySelector<HTMLElement>('[data-gallery-grid]');
+    if (!dialog || !grid) return;
+
+    const cards = [...grid.querySelectorAll<HTMLButtonElement>('[data-gallery-item]')];
+    const dialogImage = dialog.querySelector<HTMLImageElement>('.gallery-dialog__image')!;
+    const title = dialog.querySelector<HTMLElement>('.gallery-dialog__title')!;
+    const description = dialog.querySelector<HTMLElement>('.gallery-dialog__description')!;
+    const category = dialog.querySelector<HTMLElement>('.gallery-dialog__category')!;
+    let currentIndex = 0;
+    let returnFocus: HTMLButtonElement | null = null;
+    const visibleCards = () => cards.filter((card) => !card.hidden);
+
+    const show = (index: number) => {
+      const available = visibleCards();
+      if (!available.length) return;
+      currentIndex = (index + available.length) % available.length;
+      const card = available[currentIndex];
+      const image = card.querySelector('img')!;
+      const copy = card.querySelector<HTMLElement>('.gallery-item__meta')!;
+      dialogImage.src = image.currentSrc || image.src;
+      dialogImage.alt = image.alt;
+      title.textContent = copy.querySelector('strong')?.textContent ?? '';
+      description.textContent = card.dataset.description ?? '';
+      category.textContent = copy.querySelector('span')?.textContent ?? '';
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        returnFocus = card;
+        show(visibleCards().indexOf(card));
+        dialog.showModal();
+      });
+    });
+
+    section.querySelector('[data-gallery-close]')?.addEventListener('click', () => dialog.close());
+    section.querySelector('[data-gallery-previous]')?.addEventListener('click', () => show(currentIndex - 1));
+    section.querySelector('[data-gallery-next]')?.addEventListener('click', () => show(currentIndex + 1));
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => returnFocus?.focus());
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') show(currentIndex - 1);
+      if (event.key === 'ArrowRight') show(currentIndex + 1);
+    });
+
+    section.querySelectorAll<HTMLButtonElement>('[data-gallery-filter]').forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const selected = filter.dataset.galleryFilter;
+        section.querySelectorAll('[data-gallery-filter]').forEach((button) => {
+          button.setAttribute('aria-pressed', String(button === filter));
+          button.classList.toggle('is-active', button === filter);
+        });
+        cards.forEach((card) => {
+          card.hidden = selected !== 'all' && card.dataset.category !== selected;
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .space-section { padding: clamp(5rem, 9vw, 8rem) 0; background: var(--color-brand-bg); overflow: hidden; }
+  .space-shell { width: min(100% - 3rem, 76rem); margin-inline: auto; }
+  .space-heading { max-width: 48rem; margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+  .space-eyebrow,.space-kicker { color: var(--color-brand-green); font-size: .75rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .space-eyebrow { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.1rem; }
+  .space-eyebrow span { width: 2.5rem; height: 2px; background: var(--color-brand-orange); }
+  .space-heading h2 { color: var(--color-brand-green-deep); font-size: clamp(2.3rem, 5vw, 4rem); font-weight: 800; letter-spacing: -.045em; line-height: 1.08; max-width: 12ch; }
+  .space-heading > p:last-child { max-width: 39rem; margin-top: 1.25rem; color: var(--color-brand-text-secondary); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.75; }
+  .space-overview { display: grid; grid-template-columns: minmax(15rem,.78fr) minmax(0,1.22fr); gap: clamp(2rem,6vw,6rem); align-items: center; }
+  .space-overview__copy { max-width: 31rem; }
+  .space-overview__copy h3,.gallery-heading h3 { margin: .75rem 0 1rem; color: var(--color-brand-green-deep); font-size: clamp(1.7rem,3vw,2.5rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.15; }
+  .space-overview__copy > p:not(.space-kicker) { color: var(--color-brand-text-secondary); font-size: 1rem; line-height: 1.8; }
+  .space-overview__copy address { margin-top: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--color-brand-orange); color: var(--color-brand-green-dark); font-style: normal; font-weight: 700; line-height: 1.65; }
+  .space-overview__figure { position: relative; min-height: 23rem; aspect-ratio: 1.45; overflow: hidden; background: #e7efe9; }
+  .space-overview__figure > img { width: 100%; height: 100%; object-fit: cover; }
+  .space-placeholder { display: grid; min-height: 23rem; height: 100%; place-content: center; justify-items: center; gap: 1rem; padding: 2rem; background: linear-gradient(135deg,#eaf5ee,#dfeae2); color: var(--color-brand-green-dark); text-align: center; }
+  .space-placeholder svg { width: 4rem; height: 4rem; opacity: .68; }
+  .space-placeholder span { max-width: 16rem; font-weight: 700; }
+  .space-photo-caption { position: absolute; right: 1rem; bottom: 1rem; padding: .7rem 1rem; background: white; color: var(--color-brand-green-deep); font-size: .8rem; font-weight: 700; }
+  .learning-note { display: grid; grid-template-columns: minmax(12rem,.7fr) 1.3fr; column-gap: 2rem; align-items: baseline; margin: clamp(3rem,6vw,5rem) 0 0; padding: 1.5rem 0; border-top: 1px solid var(--color-brand-border); border-bottom: 1px solid var(--color-brand-border); }
+  .learning-note .space-kicker { grid-row: span 2; }
+  .learning-note h3 { color: var(--color-brand-green-deep); font-size: clamp(1.4rem,2.4vw,2rem); font-weight: 800; letter-spacing: -.03em; }
+  .learning-note > p:last-child { margin-top: .45rem; color: var(--color-brand-text-secondary); line-height: 1.7; }
+  .gallery-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin: clamp(4rem,8vw,7rem) 0 1.75rem; }
+  .gallery-heading h3 { margin-block: .6rem; }
+  .gallery-heading p:last-child { max-width: 35rem; color: var(--color-brand-text-secondary); line-height: 1.65; }
+  .gallery-filters { display: flex; max-width: 32rem; flex-wrap: wrap; justify-content: end; gap: .5rem; }
+  .gallery-filter { padding: .65rem .85rem; border: 1px solid var(--color-brand-border); background: white; color: var(--color-brand-text-secondary); font-size: .78rem; font-weight: 700; transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+  .gallery-filter:hover,.gallery-filter.is-active { border-color: var(--color-brand-green); background: var(--color-brand-green); color: white; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+  .gallery-item { position: relative; min-height: 14rem; overflow: hidden; border: 0; padding: 0; background: #e7efe9; text-align: left; cursor: zoom-in; }
+  .gallery-item--featured { grid-column: span 2; grid-row: span 2; min-height: 29rem; }
+  .gallery-item img { display: block; width: 100%; height: 100%; min-height: inherit; object-fit: cover; transition: transform 500ms cubic-bezier(.2,.7,.2,1); }
+  .gallery-item:hover img { transform: scale(1.025); }
+  .gallery-item__meta { position: absolute; inset: auto 0 0; display: grid; gap: .35rem; padding: 2.5rem 1.2rem 1.1rem; background: linear-gradient(transparent,rgba(11,61,46,.88)); color: white; }
+  .gallery-item__meta span { color: #e5f3e9; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .gallery-item__meta strong { font-size: 1rem; }
+  .gallery-item[hidden] { display: none; }
+  .gallery-empty { display: grid; grid-template-columns: minmax(4rem,.18fr) 1fr; gap: 1.5rem; align-items: start; max-width: 54rem; padding: 1.5rem 0 2rem; }
+  .gallery-empty__rule { width: 100%; height: 2px; margin-top: .8rem; background: var(--color-brand-orange); }
+  .gallery-empty h4 { color: var(--color-brand-green-deep); font-size: 1.2rem; font-weight: 800; }
+  .gallery-empty p { max-width: 42rem; margin-top: .5rem; color: var(--color-brand-text-secondary); line-height: 1.7; }
+  .category-note { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-brand-border); }
+  .category-note > span { color: var(--color-brand-text-secondary); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .category-note ul { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: .75rem; color: var(--color-brand-green-dark); font-size: .8rem; font-weight: 700; }
+  .category-note p { margin-top: .75rem; color: var(--color-brand-text-secondary); font-size: .8rem; }
+  .gallery-dialog { width: min(92vw, 70rem); max-width: none; max-height: 92dvh; padding: 1rem; border: 0; background: #0b2119; color: white; }
+  .gallery-dialog::backdrop { background: rgba(7,24,17,.86); backdrop-filter: blur(3px); }
+  .gallery-dialog__bar,.gallery-dialog__footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .gallery-dialog__bar { min-height: 2.5rem; }
+  .gallery-dialog__category { color: #bdd7c5; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .gallery-dialog__close,.gallery-dialog__controls button { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid #557366; background: transparent; color: white; }
+  .gallery-dialog__close svg { width: 1.25rem; }
+  .gallery-dialog__image-wrap { display: grid; min-height: min(60vh,40rem); place-items: center; background: #071811; }
+  .gallery-dialog__image { max-width: 100%; max-height: 60vh; object-fit: contain; }
+  .gallery-dialog__footer { padding: 1.25rem .25rem .2rem; }
+  .gallery-dialog__title { font-size: 1.1rem; font-weight: 800; }
+  .gallery-dialog__description { margin-top: .35rem; color: #c8d8ce; font-size: .9rem; line-height: 1.6; }
+  .gallery-dialog__controls { display: flex; gap: .5rem; }
+  .gallery-dialog button:hover { background: var(--color-brand-green); }
+  .gallery-dialog button:focus-visible,.gallery-filter:focus-visible,.gallery-item:focus-visible { outline: 3px solid var(--color-brand-orange); outline-offset: 3px; }
+  @media (max-width: 760px) {
+    .space-shell { width: min(100% - 2rem, 38rem); }
+    .space-overview { grid-template-columns: 1fr; gap: 1.75rem; }
+    .space-overview__figure,.space-placeholder { min-height: 18rem; }
+    .learning-note { grid-template-columns: 1fr; row-gap: .65rem; }
+    .learning-note .space-kicker { grid-row: auto; }
+    .gallery-heading { align-items: start; flex-direction: column; }
+    .gallery-filters { justify-content: start; }
+    .gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem; }
+    .gallery-item { min-height: 10rem; }
+    .gallery-item--featured { grid-column: span 2; grid-row: auto; min-height: 17rem; }
+    .gallery-item__meta { padding: 2rem .75rem .75rem; }
+    .gallery-item__meta strong { font-size: .85rem; }
+    .gallery-empty { grid-template-columns: 2rem 1fr; gap: 1rem; }
+    .category-note ul { gap: .6rem 1rem; }
+    .gallery-dialog { width: 100vw; max-height: 100dvh; padding: .75rem; }
+    .gallery-dialog__image-wrap { min-height: 45vh; }
+    .gallery-dialog__image { max-height: 50vh; }
+    .gallery-dialog__footer { align-items: end; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-item img,.gallery-filter { transition: none; }
+  }
+</style>

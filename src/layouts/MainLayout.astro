@@ -1,0 +1,66 @@
+---
+/**
+ * LAYOUT UTAMA
+ *
+ * File ini adalah 'bingkai' untuk semua halaman website kita.
+ * Apapun yang kita tulis di sini (seperti tag <head> atau font)
+ * akan muncul secara otomatis di halaman yang memakai layout ini.
+ */
+
+// Mengimpor gaya CSS global agar Tailwind bisa bekerja
+import '@styles/global.css';
+
+// Mendefinisikan 'Props' (informasi yang dikirim dari halaman lain)
+interface Props {
+  title: string;        // Judul halaman
+  description?: string; // Deskripsi halaman (opsional)
+  lang: string;         // Bahasa halaman (id atau en)
+}
+
+// Mengambil data dari Props yang dikirim
+const { title, description, lang } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+    <!-- Menampilkan judul yang dikirim dari halaman utama -->
+    <title>{title}</title>
+
+    <!-- Jika ada deskripsi, tampilkan tag meta untuk SEO Google -->
+    {description && <meta name="description" content={description} />}
+
+    <!-- Mengambil Font 'Plus Jakarta Sans' dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+	</head>
+
+	<body class="antialiased">
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+		<!--
+      TAG <slot />:
+      Ini adalah tempat di mana konten halaman (seperti Hero, About, dll)
+      akan dimasukkan secara otomatis oleh Astro.
+    -->
+    <slot />
+
+    <script>
+      import '../scripts/motion';
+    </script>
+	</body>
+</html>
+
+<style is:global>
+  /* Gaya CSS Global yang berlaku di seluruh website */
+	:root {
+		--accent: #0f172a;
+	}
+</style>

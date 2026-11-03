@@ -1,0 +1,61 @@
+---
+/**
+ * KOMPONEN INFORMASI OPERASIONAL
+ */
+
+interface Props {
+  data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="py-24 bg-brand-bg relative overflow-hidden">
+  <div class="container mx-auto px-6">
+    <div class="bg-white rounded-[3rem] p-8 md:p-16 border border-brand-border shadow-xl relative overflow-hidden group/main">
+      <!-- Ornamen -->
+      <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-green/5 rounded-full blur-3xl transition-transform duration-1000 group-hover/main:scale-150"></div>
+      <div class="absolute -bottom-12 -left-12 w-48 h-48 bg-brand-orange/5 rounded-full blur-3xl transition-transform duration-1000 group-hover/main:scale-150"></div>
+
+      <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+        <div class="flex-1">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-orange-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-orange/10">
+            {data.label}
+          </div>
+          <h2 class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-8">
+            {data.title}
+          </h2>
+          <p class="text-xl text-brand-text-secondary font-medium leading-relaxed mb-10">
+            {data.description}
+          </p>
+
+          <div class="flex items-center gap-4 p-6 bg-brand-green-light rounded-2xl border border-brand-green/10 transition-all duration-300 hover:shadow-md hover:border-brand-green/30">
+             <div class="w-12 h-12 bg-brand-green rounded-xl flex items-center justify-center text-white flex-shrink-0 transition-transform duration-300 group-hover/main:rotate-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+             </div>
+             <p class="text-lg font-black text-brand-green-dark leading-tight">
+               {data.schedule}
+             </p>
+          </div>
+        </div>
+
+        <div class="flex-1 w-full max-w-lg">
+           <div class="aspect-[4/5] bg-brand-green-light rounded-[2rem] border-8 border-brand-bg overflow-hidden relative group">
+              <div class="absolute inset-0 flex items-center justify-center bg-brand-green/10 group-hover:scale-110 transition-transform duration-700">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 text-brand-green/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-green-deep/40 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-white/50 transform transition-transform duration-500 group-hover:-translate-y-1">
+                 <p class="text-xs font-black text-brand-green uppercase tracking-widest mb-1">Praktik Siswa</p>
+                 <h4 class="text-sm font-black text-brand-green-dark">Belajar Profesional Sejak Sekolah</h4>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
