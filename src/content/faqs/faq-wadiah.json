@@ -1,0 +1,13 @@
+{
+  "id": "faq-wadiah",
+  "question": {
+    "id": "Apa yang dimaksud dengan tabungan Wadiah?",
+    "en": "What is meant by Wadiah savings?"
+  },
+  "answer": {
+    "id": "Wadiah adalah titipan murni. Di bank mini kami, ini berarti tabungan Anda aman, tidak ada bunga, dan tidak ada potongan biaya admin bulanan.",
+    "en": "Wadiah refers to an entrusted deposit. At our mini bank, savings carry no interest and no monthly administration fee deductions."
+  },
+  "order": 2,
+  "published": true
+}

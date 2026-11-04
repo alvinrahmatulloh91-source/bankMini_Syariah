@@ -37,6 +37,27 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 200;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: var(--color-brand-green-deep);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 800;
+    text-decoration: none;
+    transform: translateY(-160%);
+    transition: transform var(--motion-fast) var(--ease-out-expo);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline-color: var(--color-brand-orange);
+  }
+
   /* Scroll Progress Bar */
   #scroll-progress {
     position: fixed;
@@ -192,6 +213,21 @@
 @keyframes timeline-arrive {
   from { opacity: 0; transform: translate3d(0, 1.25rem, 0); }
   to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .timeline-spine {

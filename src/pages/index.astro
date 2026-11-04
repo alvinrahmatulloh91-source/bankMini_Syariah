@@ -15,10 +15,15 @@ import ActivityDocumentation from '@components/ActivityDocumentation.astro';
 import { getCollection } from 'astro:content';
 import { siteContent } from '@data/siteContent';
 import { validateContentMedia } from '@data/validateContentMedia';
+import { validatePairedContent } from '@data/validatePairedContent';
 const data = siteContent.id;
 const roomGallery = await getCollection('roomGallery');
 const activityDocumentation = await getCollection('activityDocumentation');
+const services = await getCollection('services');
+const faqs = await getCollection('faqs');
+validatePairedContent(services.map((item) => item.data), faqs.map((item) => item.data));
 validateContentMedia([
+  ...services.map((item) => item.data.image),
   ...roomGallery.map((item) => item.data.image),
   ...activityDocumentation.map((item) => item.data.image)
 ]);
@@ -31,16 +36,16 @@ validateContentMedia([
 >
   <Navbar data={data.nav} branding={data.branding} lang="id" />
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <Hero data={data.hero} lang="id" />
     <About data={data.about} />
-    <Services data={data.services} />
+    <Services data={data.services} items={services} lang="id" />
     <RoomGallery data={data.space} address={data.location.address} lang="id" items={roomGallery} />
     <ActivityDocumentation items={activityDocumentation} lang="id" />
     <ServiceProcess data={data.process} />
     <Advantages data={data.advantages} />
     <OperationInfo data={data.operation} />
-    <FAQ data={data.faq} />
+    <FAQ data={data.faq} items={faqs} lang="id" />
     <Location data={data.location} contactData={data.contact} lang="id" />
   </main>
 

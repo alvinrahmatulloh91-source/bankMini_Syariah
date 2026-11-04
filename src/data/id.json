@@ -55,48 +55,7 @@
     "label": "Layanan Kami",
     "headline": "Produk dan Layanan Unggulan",
     "subheadline": "Solusi layanan perbankan yang mudah, aman, dan sesuai prinsip syariah.",
-    "cta": "Info Selengkapnya",
-    "items": [
-      {
-        "id": "bsi-agen",
-        "title": "BSI Agen (Laku Pandai)",
-        "description": "Layanan utama yang dapat dimanfaatkan warga sekolah untuk berbagai kebutuhan transaksi.",
-        "details": [
-          "Setor tunai",
-          "Tarik tunai",
-          "Transfer antar bank",
-          "Pembayaran PDAM & BPJS",
-          "Pembayaran SPP Sekolah",
-          "Top up e-Wallet (OVO, GoPay, ShopeePay)",
-          "Pembelian token PLN & Pulsa"
-        ],
-        "image": "",
-        "image_alt": "",
-        "icon": "bank",
-        "order": 1,
-        "featured": true,
-        "published": true
-      },
-      {
-        "id": "tabungan-siswa",
-        "title": "Tabungan Siswa",
-        "description": "Layanan tabungan khusus siswa dengan prinsip syariah yang murni.",
-        "details": [
-          "Prinsip Wadiah (Tanpa Bunga)",
-          "Tanpa Biaya Administrasi Bulanan",
-          "Setoran Awal hanya Rp10.000",
-          "Setoran Berikutnya minimal Rp5.000",
-          "Saldo Minimum Rp10.000",
-          "Biaya Penutupan Rekening Rp10.000"
-        ],
-        "image": "",
-        "image_alt": "",
-        "icon": "savings",
-        "order": 2,
-        "featured": false,
-        "published": true
-      }
-    ]
+    "cta": "Info Selengkapnya"
   },
   "space": {
     "eyebrow": "Jelajahi Bank Mini",
@@ -158,19 +117,23 @@
     "items": [
       {
         "title": "Prinsip Syariah",
-        "description": "Semua transaksi dijalankan sesuai dengan kaidah perbankan syariah yang halal."
+        "description": "Semua transaksi dijalankan sesuai dengan kaidah perbankan syariah yang halal.",
+        "icon": "sharia"
       },
       {
         "title": "Sarana Edukasi",
-        "description": "Menjadi tempat praktik nyata bagi siswa untuk belajar dunia perbankan secara profesional."
+        "description": "Menjadi tempat praktik nyata bagi siswa untuk belajar dunia perbankan secara profesional.",
+        "icon": "education"
       },
       {
         "title": "Lokasi Strategis",
-        "description": "Berada tepat di dalam lingkungan sekolah, memudahkan akses bagi seluruh warga sekolah."
+        "description": "Berada tepat di dalam lingkungan sekolah, memudahkan akses bagi seluruh warga sekolah.",
+        "icon": "location"
       },
       {
         "title": "Bebas Biaya Admin",
-        "description": "Khusus untuk tabungan siswa, tidak ada potongan biaya administrasi setiap bulannya."
+        "description": "Khusus untuk tabungan siswa, tidak ada potongan biaya administrasi setiap bulannya.",
+        "icon": "fees"
       }
     ]
   },
@@ -178,7 +141,11 @@
     "label": "Informasi Pelayanan",
     "title": "Layanan Oleh Siswa Praktikan",
     "description": "Customer Service dan Teller dilayani oleh siswa kelas XI LPS dan X LPS yang bertugas secara bergiliran sebagai bagian dari pembelajaran praktik perbankan.",
-    "schedule": "Pelayanan teller tersedia saat jam istirahat pada hari sekolah."
+    "schedule": "Pelayanan teller tersedia saat jam istirahat pada hari sekolah.",
+    "image": "",
+    "image_alt": "",
+    "practice_label": "Praktik Siswa",
+    "practice_title": "Belajar Profesional Sejak Sekolah"
   },
   "location": {
     "label": "Lokasi Kami",
@@ -206,37 +173,7 @@
   "faq": {
     "label": "FAQ",
     "headline": "Pertanyaan yang Sering Diajukan",
-    "description": "Informasi tentang layanan, tabungan, dan jam pelayanan Bank Mini.",
-    "items": [
-      {
-        "q": "Apa itu LKM Mitra Siswa Abadi?",
-        "a": "LKM Mitra Siswa Abadi adalah bank mini syariah di SMKN 1 Bantul yang berfungsi sebagai sarana praktik siswa sekaligus penyedia layanan perbankan sekolah.",
-        "id": "faq-identity",
-        "order": 1,
-        "published": true
-      },
-      {
-        "q": "Apa yang dimaksud dengan tabungan Wadiah?",
-        "a": "Wadiah adalah titipan murni. Di bank mini kami, ini berarti tabungan Anda aman, tidak ada bunga, dan tidak ada potongan biaya admin bulanan.",
-        "id": "faq-wadiah",
-        "order": 2,
-        "published": true
-      },
-      {
-        "q": "Siapa saja yang dapat menjadi nasabah?",
-        "a": "Layanan kami terbuka untuk seluruh siswa, guru, dan karyawan di lingkungan SMKN 1 Bantul.",
-        "id": "faq-customer",
-        "order": 3,
-        "published": true
-      },
-      {
-        "q": "Kapan layanan teller tersedia?",
-        "a": "Teller kami siap melayani Anda pada hari sekolah, terutama pada jam-jam istirahat siswa.",
-        "id": "faq-hours",
-        "order": 4,
-        "published": true
-      }
-    ]
+    "description": "Informasi tentang layanan, tabungan, dan jam pelayanan Bank Mini."
   },
   "footer": {
     "motto": "Aman dan Halal Bersama Syariah",

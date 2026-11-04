@@ -4,69 +4,85 @@
  * Redesain: Narasi & Timeline
  */
 import HistoryTimeline from './HistoryTimeline.astro';
+import type { SiteContent } from '../data/siteContentSchema';
 
 interface Props {
-  data: any;
+  data: SiteContent['about'];
 }
 
 const { data } = Astro.props;
+const hasVisionMission = Boolean(data.visi?.text?.trim() || data.misi?.text?.trim() || data.motto?.text?.trim());
 ---
 
-<section id="about" class="py-24 bg-white relative overflow-hidden">
+<section id="about" class="py-24 bg-white relative overflow-hidden" aria-labelledby="about-title">
   <div class="container mx-auto px-6">
     <!-- Header Section -->
     <div class="max-w-3xl mb-20 reveal reveal-fade-right">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-green-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-green/10">
-        {data.label}
-      </div>
-      <h2 class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-8">
+      {data.label && (
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-green-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-green/10">
+          {data.label}
+        </div>
+      )}
+      <h2 id="about-title" class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-8">
         {data.headline}
       </h2>
-      <p class="text-xl text-brand-text-secondary leading-relaxed font-medium">
-        {data.history_narration}
-      </p>
+      {data.history_narration && (
+        <p class="text-xl text-brand-text-secondary leading-relaxed font-medium">
+          {data.history_narration}
+        </p>
+      )}
     </div>
 
     <!-- Timeline Sejarah -->
-    <div class="mb-32">
-       <HistoryTimeline items={data.timeline} />
-    </div>
+    {data.timeline && data.timeline.length > 0 && (
+      <div class="mb-32">
+        <HistoryTimeline items={data.timeline} />
+      </div>
+    )}
 
     <!-- Visi Misi Motto -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Visi -->
-      <div class="reveal reveal-fade-up stagger-1 group p-10 bg-brand-green-light rounded-[2.5rem] border border-brand-green/5 hover:border-brand-green/30 transition-colors duration-300">
-        <div class="w-14 h-14 bg-brand-green rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-brand-green/20 group-hover:-translate-y-0.5 transition-transform duration-200">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-          </svg>
-        </div>
-        <h3 class="text-2xl font-black text-brand-green-dark mb-4">{data.visi.title}</h3>
-        <p class="text-brand-text-secondary font-bold leading-relaxed">{data.visi.text}</p>
-      </div>
+    {hasVisionMission && (
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Visi -->
+        {data.visi?.text?.trim() && (
+          <div class="reveal reveal-fade-up stagger-1 group p-10 bg-brand-green-light rounded-[2.5rem] border border-brand-green/5 hover:border-brand-green/30 transition-colors duration-300">
+            <div class="w-14 h-14 bg-brand-green rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-brand-green/20 group-hover:-translate-y-0.5 transition-transform duration-200">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-black text-brand-green-dark mb-4">{data.visi.title || 'Visi'}</h3>
+            <p class="text-brand-text-secondary font-bold leading-relaxed">{data.visi.text}</p>
+          </div>
+        )}
 
-      <!-- Misi -->
-      <div class="reveal reveal-fade-up stagger-2 group p-10 bg-brand-orange-soft rounded-[2.5rem] border border-brand-orange/5 hover:border-brand-orange/30 transition-colors duration-300">
-        <div class="w-14 h-14 bg-brand-orange rounded-2xl flex items-center justify-center text-brand-green-deep mb-8 shadow-lg shadow-brand-orange/20 group-hover:-translate-y-0.5 transition-transform duration-200">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        </div>
-        <h3 class="text-2xl font-black text-brand-orange-dark mb-4">{data.misi.title}</h3>
-        <p class="text-brand-text-primary font-bold leading-relaxed">{data.misi.text}</p>
-      </div>
+        <!-- Misi -->
+        {data.misi?.text?.trim() && (
+          <div class="reveal reveal-fade-up stagger-2 group p-10 bg-brand-orange-soft rounded-[2.5rem] border border-brand-orange/5 hover:border-brand-orange/30 transition-colors duration-300">
+            <div class="w-14 h-14 bg-brand-orange rounded-2xl flex items-center justify-center text-brand-green-deep mb-8 shadow-lg shadow-brand-orange/20 group-hover:-translate-y-0.5 transition-transform duration-200">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-black text-brand-orange-dark mb-4">{data.misi.title || 'Misi'}</h3>
+            <p class="text-brand-text-primary font-bold leading-relaxed">{data.misi.text}</p>
+          </div>
+        )}
 
-      <!-- Motto -->
-      <div class="reveal reveal-fade-up stagger-3 group p-10 bg-brand-green-deep rounded-[2.5rem] border border-white/5 hover:bg-brand-green-dark transition-colors duration-300">
-        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-brand-green-deep mb-8 shadow-lg shadow-black/10 group-hover:-translate-y-0.5 transition-transform duration-200">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-          </svg>
-        </div>
-        <h3 class="text-2xl font-black text-white mb-4">{data.motto.title}</h3>
-        <p class="text-brand-green-soft font-bold leading-relaxed">{data.motto.text}</p>
+        <!-- Motto -->
+        {data.motto?.text?.trim() && (
+          <div class="reveal reveal-fade-up stagger-3 group p-10 bg-brand-green-deep rounded-[2.5rem] border border-white/5 hover:bg-brand-green-dark transition-colors duration-300">
+            <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-brand-green-deep mb-8 shadow-lg shadow-black/10 group-hover:-translate-y-0.5 transition-transform duration-200">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-black text-white mb-4">{data.motto.title || 'Motto'}</h3>
+            <p class="text-brand-green-soft font-bold leading-relaxed">{data.motto.text}</p>
+          </div>
+        )}
       </div>
-    </div>
+    )}
   </div>
 </section>

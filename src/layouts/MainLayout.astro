@@ -9,57 +9,83 @@
 
 // Mengimpor gaya CSS global agar Tailwind bisa bekerja
 import '@styles/global.css';
+import { siteContent } from '../data/siteContent';
 
 // Mendefinisikan 'Props' (informasi yang dikirim dari halaman lain)
 interface Props {
-  title: string;        // Judul halaman
-  description?: string; // Deskripsi halaman (opsional)
-  lang: string;         // Bahasa halaman (id atau en)
+  title: string;
+  description?: string;
+  lang: 'id' | 'en';
+  noindex?: boolean;
 }
 
-// Mengambil data dari Props yang dikirim
-const { title, description, lang } = Astro.props;
+const { title, description, lang, noindex = false } = Astro.props;
+const siteName = siteContent[lang].branding.organization_name;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const alternateId = Astro.site ? new URL('/', Astro.site).href : undefined;
+const alternateEn = Astro.site ? new URL('/en/', Astro.site).href : undefined;
+const locale = lang === 'id' ? 'id_ID' : 'en_US';
+const alternateLocale = lang === 'id' ? 'en_US' : 'id_ID';
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light" />
+		<meta name="theme-color" content="#105C38" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<meta name="generator" content={Astro.generator} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{canonical && <link rel="canonical" href={canonical} />}
+		{canonical && <link rel="alternate" hreflang="id" href={alternateId} />}
+		{canonical && <link rel="alternate" hreflang="en" href={alternateEn} />}
+		{canonical && <link rel="alternate" hreflang="x-default" href={alternateId} />}
 
-    <!-- Menampilkan judul yang dikirim dari halaman utama -->
-    <title>{title}</title>
+		<title>{title}</title>
+		{description && <meta name="description" content={description} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:title" content={title} />
+		{description && <meta property="og:description" content={description} />}
+		<meta property="og:locale" content={locale} />
+		<meta property="og:locale:alternate" content={alternateLocale} />
+		{canonical && <meta property="og:url" content={canonical} />}
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		{description && <meta name="twitter:description" content={description} />}
 
-    <!-- Jika ada deskripsi, tampilkan tag meta untuk SEO Google -->
-    {description && <meta name="description" content={description} />}
-
-    <!-- Mengambil Font 'Plus Jakarta Sans' dari Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+		<!-- Mengambil Font 'Plus Jakarta Sans' dari Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 	</head>
 
 	<body class="antialiased">
-    <!-- Scroll Progress Indicator -->
-    <div id="scroll-progress" aria-hidden="true"></div>
+		<a class="skip-link" href="#main-content">
+			{lang === 'id' ? 'Lewati ke konten utama' : 'Skip to main content'}
+		</a>
+
+		<!-- Scroll Progress Indicator -->
+		<div id="scroll-progress" aria-hidden="true"></div>
 
 		<!--
-      TAG <slot />:
-      Ini adalah tempat di mana konten halaman (seperti Hero, About, dll)
-      akan dimasukkan secara otomatis oleh Astro.
-    -->
-    <slot />
+			TAG <slot />:
+			Ini adalah tempat di mana konten halaman (seperti Hero, About, dll)
+			akan dimasukkan secara otomatis oleh Astro.
+		-->
+		<slot />
 
-    <script>
-      import '../scripts/motion';
-    </script>
+		<script>
+			import '../scripts/motion';
+		</script>
 	</body>
 </html>
 
 <style is:global>
-  /* Gaya CSS Global yang berlaku di seluruh website */
+	/* Gaya CSS Global yang berlaku di seluruh website */
 	:root {
 		--accent: #0f172a;
 	}

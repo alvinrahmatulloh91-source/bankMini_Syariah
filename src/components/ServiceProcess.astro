@@ -2,48 +2,55 @@
 /**
  * KOMPONEN ALUR PELAYANAN
  */
+import type { SiteContent } from '../data/siteContentSchema';
 
 interface Props {
-  data: any;
+  data: SiteContent['process'];
 }
 
 const { data } = Astro.props;
 ---
 
-<section class="py-24 bg-brand-green-deep relative overflow-hidden">
+<section class="py-24 bg-brand-green-deep relative overflow-hidden" aria-labelledby="process-title">
   <!-- Ornamen Latar -->
-  <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10"></div>
-  <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl -z-10"></div>
+  <div aria-hidden="true" class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10"></div>
+  <div aria-hidden="true" class="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl -z-10"></div>
 
   <div class="container mx-auto px-6">
     <div class="text-center mb-20">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 text-brand-green-soft text-xs font-black uppercase tracking-wider mb-6 border border-white/5">
-        {data.label}
-      </div>
-      <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">
+      {data.label && (
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 text-brand-green-soft text-xs font-black uppercase tracking-wider mb-6 border border-white/5">
+          {data.label}
+        </div>
+      )}
+      <h2 id="process-title" class="text-3xl md:text-5xl font-black text-white leading-tight">
         {data.headline}
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {data.steps.map((step: any, index: number) => (
-        <div class="relative group">
-          <!-- Panah Penghubung (Hanya Desktop) -->
-          {index < data.steps.length - 1 && (
-            <div class="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-brand-orange/40 to-transparent -translate-x-12 z-0"></div>
-          )}
+    {data.steps && data.steps.length > 0 && (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {data.steps.map((step, index) => (
+          <div class="relative group">
+            <!-- Panah Penghubung (Hanya Desktop) -->
+            {index < data.steps.length - 1 && (
+              <div aria-hidden="true" class="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-brand-orange/40 to-transparent -translate-x-12 z-0"></div>
+            )}
 
-          <div class="relative z-10 text-center">
-            <div class="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center text-brand-green-deep mx-auto mb-8 shadow-lg shadow-black/15 transition-transform duration-200 group-hover:-translate-y-0.5">
-              <span class="text-3xl font-black">{index + 1}</span>
+            <div class="relative z-10 text-center">
+              <div class="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center text-brand-green-deep mx-auto mb-8 shadow-lg shadow-black/15 transition-transform duration-200 group-hover:-translate-y-0.5">
+                <span class="text-3xl font-black">{index + 1}</span>
+              </div>
+              <h3 class="text-xl font-black text-white mb-4 group-hover:text-brand-orange transition-colors">{step.title}</h3>
+              {step.description && (
+                <p class="text-brand-green-soft/70 font-medium leading-relaxed">
+                  {step.description}
+                </p>
+              )}
             </div>
-            <h4 class="text-xl font-black text-white mb-4 group-hover:text-brand-orange transition-colors">{step.title}</h4>
-            <p class="text-brand-green-soft/70 font-medium leading-relaxed">
-              {step.description}
-            </p>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>

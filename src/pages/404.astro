@@ -1,0 +1,31 @@
+---
+import MainLayout from '@layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="Halaman tidak ditemukan | Page not found · LKM Mitra Siswa Abadi"
+  description="Halaman yang Anda cari tidak tersedia. The page you are looking for is not available."
+  lang="id"
+  noindex
+>
+  <main id="main-content" tabindex="-1" class="flex min-h-screen items-center justify-center bg-brand-green-deep px-6 py-24 text-white">
+    <div class="w-full max-w-2xl rounded-[2.5rem] border border-white/10 bg-white/5 p-8 shadow-2xl md:p-14">
+      <p class="text-xs font-black uppercase tracking-[0.3em] text-brand-orange">404</p>
+      <h1 class="mt-5 text-4xl font-black leading-tight md:text-6xl">Halaman tidak ditemukan</h1>
+      <p class="mt-4 text-lg font-medium leading-relaxed text-brand-green-soft/80">
+        Halaman yang Anda cari tidak tersedia atau sudah dipindahkan.
+      </p>
+      <p lang="en" class="mt-2 text-base font-medium leading-relaxed text-brand-green-soft/70">
+        The page you are looking for is not available or has been moved.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/" class="inline-flex min-h-11 items-center rounded-xl bg-brand-orange px-5 py-3 text-sm font-black text-brand-green-deep transition-colors hover:bg-white">
+          Kembali ke beranda
+        </a>
+        <a href="/en/" lang="en" class="inline-flex min-h-11 items-center rounded-xl border border-white/20 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-white/10">
+          Back to home
+        </a>
+      </div>
+    </div>
+  </main>
+</MainLayout>

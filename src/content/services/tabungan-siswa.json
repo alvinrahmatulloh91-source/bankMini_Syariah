@@ -1,0 +1,38 @@
+{
+  "id": "tabungan-siswa",
+  "title": {
+    "id": "Tabungan Siswa",
+    "en": "Student Savings"
+  },
+  "description": {
+    "id": "Layanan tabungan khusus siswa dengan prinsip syariah yang murni.",
+    "en": "A student savings service based on sharia principles."
+  },
+  "details": {
+    "id": [
+      "Prinsip Wadiah (Tanpa Bunga)",
+      "Tanpa Biaya Administrasi Bulanan",
+      "Setoran Awal hanya Rp10.000",
+      "Setoran Berikutnya minimal Rp5.000",
+      "Saldo Minimum Rp10.000",
+      "Biaya Penutupan Rekening Rp10.000"
+    ],
+    "en": [
+      "Wadiah Principle (No Interest)",
+      "No Monthly Administration Fees",
+      "Opening deposit: IDR 10,000",
+      "Minimum subsequent deposit: IDR 5,000",
+      "Minimum Balance IDR 10,000",
+      "Account Closing Fee IDR 10,000"
+    ]
+  },
+  "image": "",
+  "image_alt": {
+    "id": "",
+    "en": ""
+  },
+  "icon": "savings",
+  "order": 2,
+  "featured": false,
+  "published": true
+}

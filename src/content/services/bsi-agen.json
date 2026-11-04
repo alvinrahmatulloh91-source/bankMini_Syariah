@@ -1,0 +1,40 @@
+{
+  "id": "bsi-agen",
+  "title": {
+    "id": "BSI Agen (Laku Pandai)",
+    "en": "BSI Agent (Laku Pandai)"
+  },
+  "description": {
+    "id": "Layanan utama yang dapat dimanfaatkan warga sekolah untuk berbagai kebutuhan transaksi.",
+    "en": "The main service that can be utilized by the school community for various transaction needs."
+  },
+  "details": {
+    "id": [
+      "Setor tunai",
+      "Tarik tunai",
+      "Transfer antar bank",
+      "Pembayaran PDAM & BPJS",
+      "Pembayaran SPP Sekolah",
+      "Top up e-Wallet (OVO, GoPay, ShopeePay)",
+      "Pembelian token PLN & Pulsa"
+    ],
+    "en": [
+      "Cash deposit",
+      "Cash withdrawal",
+      "Interbank transfer",
+      "PDAM & BPJS payment",
+      "School Fee (SPP) payment",
+      "Top up e-Wallet (OVO, GoPay, ShopeePay)",
+      "PLN tokens & Credit purchase"
+    ]
+  },
+  "image": "",
+  "image_alt": {
+    "id": "",
+    "en": ""
+  },
+  "icon": "bank",
+  "order": 1,
+  "featured": true,
+  "published": true
+}

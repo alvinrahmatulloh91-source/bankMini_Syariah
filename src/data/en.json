@@ -10,8 +10,8 @@
   },
   "hero": {
     "label": "Sharia Banking Services at SMKN 1 Bantul",
-    "headline": "Safe and Halal with Sharia",
-    "subheadline": "Providing Islamic savings and banking transaction services while serving as a practical learning facility for students of SMKN 1 Bantul.",
+    "headline": "Safe and Halal, Guided by Sharia Principles",
+    "subheadline": "We provide savings and banking transaction services while giving SMKN 1 Bantul students a place to learn through practical banking experience.",
     "cta_primary": "Explore Our Services",
     "cta_secondary": "Contact Us on WhatsApp",
     "image": "",
@@ -20,7 +20,7 @@
   "about": {
     "label": "About Us",
     "headline": "Getting to Know LKM Mitra Siswa Abadi",
-    "history_narration": "LKM Mitra Siswa Abadi is a banking service unit operating within SMKN 1 Bantul. Starting from an initiative to provide real practical facilities for students, we have now grown into a trusted transaction service center for the entire school community.",
+    "history_narration": "LKM Mitra Siswa Abadi is a banking service unit at SMKN 1 Bantul. It began as an initiative to give students practical experience and has grown into a trusted transaction service for the school community.",
     "timeline": [
       {
         "year": "2008",
@@ -35,7 +35,7 @@
       {
         "year": "Present",
         "title": "Teaching Factory",
-        "description": "Functions as a Teaching Factory, practical laboratory, and a mini bank serving customers."
+        "description": "Functions as a Teaching Factory, a practical learning laboratory, and a mini bank serving customers."
       }
     ],
     "visi": {
@@ -44,74 +44,33 @@
     },
     "misi": {
       "title": "Mission",
-      "text": "To serve wholeheartedly by applying sharia principles in banking learning practices."
+      "text": "To provide wholehearted service while applying sharia principles in practical banking education."
     },
     "motto": {
       "title": "Motto",
-      "text": "Safe and Halal with Sharia."
+      "text": "Safe and Halal, Guided by Sharia Principles."
     }
   },
   "services": {
     "label": "Our Services",
-    "headline": "Superior Products and Services",
+    "headline": "Featured Products and Services",
     "subheadline": "Easy, safe banking solutions in accordance with sharia principles.",
-    "cta": "More information",
-    "items": [
-      {
-        "id": "bsi-agen",
-        "title": "BSI Agent (Laku Pandai)",
-        "description": "The main service that can be utilized by the school community for various transaction needs.",
-        "details": [
-          "Cash deposit",
-          "Cash withdrawal",
-          "Interbank transfer",
-          "PDAM & BPJS payment",
-          "School Fee (SPP) payment",
-          "Top up e-Wallet (OVO, GoPay, ShopeePay)",
-          "PLN tokens & Credit purchase"
-        ],
-        "image": "",
-        "image_alt": "",
-        "icon": "bank",
-        "order": 1,
-        "featured": true,
-        "published": true
-      },
-      {
-        "id": "tabungan-siswa",
-        "title": "Student Savings",
-        "description": "Special student savings service with pure sharia principles.",
-        "details": [
-          "Wadiah Principle (No Interest)",
-          "No Monthly Administration Fees",
-          "Initial Deposit only IDR 10,000",
-          "Subsequent Deposits min IDR 5,000",
-          "Minimum Balance IDR 10,000",
-          "Account Closing Fee IDR 10,000"
-        ],
-        "image": "",
-        "image_alt": "",
-        "icon": "savings",
-        "order": 2,
-        "featured": false,
-        "published": true
-      }
-    ]
+    "cta": "More details"
   },
   "space": {
     "eyebrow": "Explore the Bank Mini",
     "title": "A closer look at the Bank Mini",
     "description": "Get to know the banking service environment and sharia banking learning facilities at SMKN 1 Bantul.",
     "roomTitle": "Service and learning space",
-    "roomDescription": "The Bank Mini is in the west wing of the main field building, on the second floor, in the southernmost room near the stairs. Room and facility photos will appear once official documentation is available.",
+    "roomDescription": "The Bank Mini is in the west wing of the main field building, on the second floor, in the southernmost room near the stairs. Photos of the room and facilities will be added when official documentation is available.",
     "learningLabel": "Practical learning",
     "learningTitle": "Sharia banking Teaching Factory",
-    "learningText": "The Bank Mini functions as a Teaching Factory and banking practice environment. Learning applies sharia principles to banking practice, in line with the LKM mission.",
+    "learningText": "The Bank Mini serves as a Teaching Factory and a setting for practical banking lessons. These lessons apply sharia principles, in line with the LKM mission.",
     "locationLabel": "Location",
     "galleryTitle": "Room documentation",
     "galleryDescription": "Photos will be added by the administrator once Bank Mini documentation is available.",
     "emptyTitle": "Room photos are not available yet",
-    "emptyText": "The administrator can add authentic photos of the room, service areas, facilities, and practice activities through the CMS once it is connected.",
+    "emptyText": "An administrator can add authentic photos of the room, service areas, facilities, and practice activities through the CMS once it is connected.",
     "categories": "Documentation categories to be filled",
     "requestedCategories": [
       "Room overview",
@@ -131,64 +90,72 @@
     "categoryDisclaimer": "These are documentation prompts, not confirmation that each facility is available."
   },
   "process": {
-    "label": "Service Flow",
-    "headline": "How to Use Our Services?",
+    "label": "How It Works",
+    "headline": "Using Our Services",
     "steps": [
       {
-        "title": "Visit Mini Bank",
+        "title": "Visit the Bank Mini",
         "description": "Come to our location in the west wing building during service hours."
       },
       {
-        "title": "State Your Needs",
-        "description": "Our teller officers are ready to welcome and ask about your needs."
+        "title": "Tell Us What You Need",
+        "description": "Our tellers will welcome you and ask how they can help."
       },
       {
-        "title": "Check Requirements",
-        "description": "Make sure you bring the necessary documents or equipment."
+        "title": "Check the Requirements",
+        "description": "Bring any documents or items needed for your transaction."
       },
       {
-        "title": "Process Transaction",
-        "description": "Officers will process your transaction quickly and safely."
+        "title": "Complete Your Transaction",
+        "description": "Staff will process your transaction."
       }
     ]
   },
   "advantages": {
     "label": "Our Advantages",
-    "headline": "Why Choose Us?",
+    "headline": "What We Offer",
     "items": [
       {
         "title": "Sharia Principles",
-        "description": "All transactions are carried out in accordance with halal sharia banking rules."
+        "description": "All transactions are carried out in accordance with halal sharia banking rules.",
+        "icon": "sharia"
       },
       {
         "title": "Educational Facility",
-        "description": "A real practical place for students to learn the world of banking professionally."
+        "description": "A practical setting where students can learn about banking.",
+        "icon": "education"
       },
       {
         "title": "Strategic Location",
-        "description": "Located right within the school environment, facilitating access for all."
+        "description": "Located on the school grounds for convenient access.",
+        "icon": "location"
       },
       {
         "title": "No Admin Fees",
-        "description": "Especially for student savings, there are no monthly administrative fee deductions."
+        "description": "Especially for student savings, there are no monthly administrative fee deductions.",
+        "icon": "fees"
       }
     ]
   },
   "operation": {
     "label": "Service Information",
-    "title": "Service by Student Interns",
-    "description": "Customer Service and Tellers are served by class XI LPS and X LPS students who take turns as part of banking practice learning.",
-    "schedule": "Teller service is available during school break hours on school days."
+    "title": "Service by Student Trainees",
+    "description": "Customer service and teller duties are handled in rotation by Grade XI LPS and Grade X LPS students as part of their practical banking lessons.",
+    "schedule": "Teller service is available during school break hours on school days.",
+    "image": "",
+    "image_alt": "",
+    "practice_label": "Student Practice",
+    "practice_title": "Learning to Be Professional at School"
   },
   "location": {
     "label": "Our Location",
-    "headline": "Find Our Location",
+    "headline": "Visit the Bank Mini",
     "address": "West wing building of the main field, 2nd floor, southernmost room, near the stairs of SMKN 1 Bantul.",
-    "instruction": "Please go up to the 2nd floor via the stairs in the west wing to find our service room.",
+    "instruction": "Take the stairs in the west wing to the second floor to find the service room.",
     "map_link": ""
   },
   "contact": {
-    "headline": "Contact Manager",
+    "headline": "Contact the Management Team",
     "whatsapp_message": "Hello, I would like to ask about the LKM Mitra Siswa Abadi Bank Mini SMKN 1 Bantul service.",
     "people": [
       {
@@ -206,40 +173,10 @@
   "faq": {
     "label": "FAQ",
     "headline": "Frequently Asked Questions",
-    "description": "Information about Bank Mini services, savings, and service hours.",
-    "items": [
-      {
-        "q": "What is LKM Mitra Siswa Abadi?",
-        "a": "LKM Mitra Siswa Abadi is a sharia mini bank at SMKN 1 Bantul that functions as a student practice facility as well as a school banking service provider.",
-        "id": "faq-identity",
-        "order": 1,
-        "published": true
-      },
-      {
-        "q": "What is meant by Wadiah savings?",
-        "a": "Wadiah is pure entrustment. In our mini bank, this means your savings are safe, no interest, and no monthly admin fee deductions.",
-        "id": "faq-wadiah",
-        "order": 2,
-        "published": true
-      },
-      {
-        "q": "Who can become a customer?",
-        "a": "Our services are open to all students, teachers, and employees within SMKN 1 Bantul.",
-        "id": "faq-customer",
-        "order": 3,
-        "published": true
-      },
-      {
-        "q": "When is teller service available?",
-        "a": "Our tellers are ready to serve you on school days, especially during student break hours.",
-        "id": "faq-hours",
-        "order": 4,
-        "published": true
-      }
-    ]
+    "description": "Information about Bank Mini services, savings, and service hours."
   },
   "footer": {
-    "motto": "Safe and Halal with Sharia",
+    "motto": "Safe and Halal, Guided by Sharia Principles",
     "copyright": "© {year} LKM Mitra Siswa Abadi SMKN 1 Bantul. All rights reserved."
   },
   "branding": {

@@ -1,13 +1,23 @@
-import { z } from 'astro:content';
+import { z } from 'astro/zod';
+import { isDecapDraftBuild } from './contentValidationMode.ts';
 
-const text = z.string().trim().min(1);
+const text = isDecapDraftBuild
+  ? z.preprocess((value) => value ?? '', z.string().trim())
+  : z.string().trim().min(1);
+
+const optionalText = z.preprocess((value) => value ?? '', z.string().trim());
+
 const mediaPath = z.preprocess((value) => value ?? '', z.string().trim().regex(/^$|^\/images\/bank-mini\/[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_-]+)*\.(?:jpe?g|png|webp)$/i, 'Use a .jpg, .png, or .webp image under public/images/bank-mini.'));
-const optionalText = z.preprocess((value) => value ?? '', z.string());
-const secureUrl = z.preprocess((value) => value ?? '', z.union([z.literal(''), z.string().url().refine((value) => value.startsWith('https://'), 'Use an HTTPS URL.') ]));
-const stableId = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+
+const secureUrl = z.preprocess((value) => value ?? '', z.union([z.literal(''), z.url().refine((value) => value.startsWith('https://'), 'Use an HTTPS URL.') ]));
+
+const advantageIcon = z.enum(['sharia', 'education', 'location', 'fees']);
 
 export const siteContentSchema = z.object({
-  branding: z.object({ organization_name: text, school_name: text }),
+  branding: z.object({
+    organization_name: text,
+    school_name: text
+  }),
   nav: z.object({
     home: text,
     about: text,
@@ -17,79 +27,113 @@ export const siteContentSchema = z.object({
     location: text,
     contact: text
   }),
-  hero: z.object({ label: text, headline: text, subheadline: text, cta_primary: text, cta_secondary: text, image: mediaPath, image_alt: optionalText }).refine((hero) => !hero.image || hero.image_alt.trim().length > 0, 'Hero image requires alternative text.'),
-  about: z.object({
-    label: text,
+  hero: z.object({
+    label: optionalText,
     headline: text,
-    history_narration: text,
-    timeline: z.array(z.object({ year: text, title: text, description: text })).min(1),
-    visi: z.object({ title: text, text }),
-    misi: z.object({ title: text, text }),
-    motto: z.object({ title: text, text })
+    subheadline: optionalText,
+    cta_primary: optionalText,
+    cta_secondary: optionalText,
+    image: mediaPath,
+    image_alt: optionalText
+  }).refine((hero) => isDecapDraftBuild || !hero.image || hero.image_alt.trim().length > 0, 'Hero image requires alternative text.'),
+  about: z.object({
+    label: optionalText,
+    headline: text,
+    history_narration: optionalText,
+    timeline: z.array(z.object({
+      year: text,
+      title: text,
+      description: optionalText
+    })).default([]),
+    visi: z.object({ title: optionalText, text: optionalText }),
+    misi: z.object({ title: optionalText, text: optionalText }),
+    motto: z.object({ title: optionalText, text: optionalText })
   }),
   services: z.object({
-    label: text,
+    label: optionalText,
     headline: text,
-    subheadline: text,
-    cta: text,
-    items: z.array(z.object({
-      id: stableId,
-      title: text,
-      description: text,
-      details: z.array(text),
-      image: mediaPath,
-      image_alt: optionalText,
-      icon: z.enum(['bank', 'savings', 'service', 'transfer', 'payment']),
-      order: z.number().int(),
-      featured: z.boolean(),
-      published: z.boolean()
-    }).refine((service) => !service.image || service.image_alt.trim().length > 0, 'Service image requires alternative text.'))
-      .refine((items) => new Set(items.map((item) => item.id)).size === items.length, 'Service IDs must be unique.')
-      .refine((items) => items.filter((item) => item.featured && item.published).length <= 1, 'Only one published service can be featured.')
+    subheadline: optionalText,
+    cta: optionalText
   }),
   space: z.object({
-    eyebrow: text,
+    eyebrow: optionalText,
     title: text,
-    description: text,
-    roomTitle: text,
-    roomDescription: text,
-    learningLabel: text,
-    learningTitle: text,
-    learningText: text,
-    locationLabel: text,
-    galleryTitle: text,
-    galleryDescription: text,
-    emptyTitle: text,
-    emptyText: text,
-    categories: text,
-    requestedCategories: z.array(text),
-    galleryFilterLabel: text,
-    allCategories: text,
-    openImage: text,
-    close: text,
-    previous: text,
-    next: text,
-    categoryDisclaimer: text
+    description: optionalText,
+    roomTitle: optionalText,
+    roomDescription: optionalText,
+    learningLabel: optionalText,
+    learningTitle: optionalText,
+    learningText: optionalText,
+    locationLabel: optionalText,
+    galleryTitle: optionalText,
+    galleryDescription: optionalText,
+    emptyTitle: optionalText,
+    emptyText: optionalText,
+    categories: optionalText,
+    requestedCategories: z.array(optionalText).default([]),
+    galleryFilterLabel: optionalText,
+    allCategories: optionalText,
+    openImage: optionalText,
+    close: optionalText,
+    previous: optionalText,
+    next: optionalText,
+    categoryDisclaimer: optionalText
   }),
-  process: z.object({ label: text, headline: text, steps: z.array(z.object({ title: text, description: text })).min(1) }),
-  advantages: z.object({ label: text, headline: text, items: z.array(z.object({ title: text, description: text })) }),
-  operation: z.object({ label: text, title: text, description: text, schedule: text }),
-  location: z.object({ label: text, headline: text, address: text, instruction: text, map_link: secureUrl }),
+  process: z.object({
+    label: optionalText,
+    headline: text,
+    steps: z.array(z.object({
+      title: text,
+      description: optionalText
+    })).default([])
+  }),
+  advantages: z.object({
+    label: optionalText,
+    headline: text,
+    items: z.array(z.object({
+      title: text,
+      description: optionalText,
+      icon: advantageIcon.default('sharia')
+    })).default([])
+  }),
+  operation: z.object({
+    label: optionalText,
+    title: text,
+    description: optionalText,
+    schedule: optionalText,
+    image: mediaPath,
+    image_alt: optionalText,
+    practice_label: optionalText,
+    practice_title: optionalText
+  }).refine((operation) => isDecapDraftBuild || !operation.image || operation.image_alt.trim().length > 0, 'Operation image requires alternative text.'),
+  location: z.object({
+    label: optionalText,
+    headline: text,
+    address: text,
+    instruction: optionalText,
+    map_link: secureUrl
+  }),
   contact: z.object({
     headline: text,
-    whatsapp_message: text,
-    school_address: text,
-    school_email: z.string().email(),
-    people: z.array(z.object({ name: text, phone: z.string().regex(/^\d{8,15}$/) }))
+    whatsapp_message: optionalText,
+    school_address: optionalText,
+    school_email: z.preprocess((value) => value ?? '', z.union([z.literal(''), z.email()])),
+    people: z.array(z.object({
+      name: text,
+      phone: isDecapDraftBuild
+        ? z.preprocess((value) => value ?? '', z.union([z.literal(''), z.string().regex(/^\d{8,15}$/)]))
+        : z.string().regex(/^\d{8,15}$/)
+    })).default([])
   }),
   faq: z.object({
-    label: text,
+    label: optionalText,
     headline: text,
-    description: text,
-    items: z.array(z.object({ id: stableId, q: text, a: text, order: z.number().int(), published: z.boolean() }))
-      .refine((items) => new Set(items.map((item) => item.id)).size === items.length, 'FAQ IDs must be unique.')
+    description: optionalText
   }),
-  footer: z.object({ motto: text, copyright: text })
+  footer: z.object({
+    motto: optionalText,
+    copyright: text
+  })
 });
 
 export type SiteContent = z.infer<typeof siteContentSchema>;

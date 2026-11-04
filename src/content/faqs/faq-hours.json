@@ -1,0 +1,13 @@
+{
+  "id": "faq-hours",
+  "question": {
+    "id": "Kapan layanan teller tersedia?",
+    "en": "When is teller service available?"
+  },
+  "answer": {
+    "id": "Teller kami siap melayani Anda pada hari sekolah, terutama pada jam-jam istirahat siswa.",
+    "en": "Teller service is available on school days, especially during student break times."
+  },
+  "order": 4,
+  "published": true
+}

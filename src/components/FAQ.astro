@@ -2,23 +2,31 @@
 /**
  * KOMPONEN FAQ
  */
+import type { SiteContent } from '../data/siteContentSchema';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  data: any;
+  data: SiteContent['faq'];
+  items: CollectionEntry<'faqs'>[];
+  lang: 'id' | 'en';
 }
 
-const { data } = Astro.props;
-const items = data.items.filter((item: any) => item.published).sort((a: any, b: any) => a.order - b.order);
+const { data, items: entries, lang } = Astro.props;
+const items = entries.map(({ data: item }) => ({
+  ...item,
+  q: item.question[lang],
+  a: item.answer[lang]
+})).filter((item) => item.published).sort((a, b) => a.order - b.order);
 ---
 
-<section class="py-24 bg-white overflow-hidden">
+<section id="faq" class="py-24 bg-white overflow-hidden" aria-labelledby="faq-title">
   <div class="container mx-auto px-6">
     <div class="flex flex-col lg:flex-row gap-16">
       <div class="flex-1 max-w-xl reveal reveal-fade-right">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-green-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-green/10">
           {data.label}
         </div>
-        <h2 class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-8">
+        <h2 id="faq-title" class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-8">
           {data.headline}
         </h2>
         <p class="text-xl text-brand-text-secondary font-medium leading-relaxed">
@@ -27,7 +35,7 @@ const items = data.items.filter((item: any) => item.published).sort((a: any, b: 
       </div>
 
       <div class="flex-1 space-y-4 reveal reveal-fade-left">
-        {items.map((item: any) => (
+        {items.map((item) => (
           <details class="group rounded-2xl border border-brand-border bg-brand-bg transition-colors duration-200 open:border-brand-green/20 open:bg-brand-green-light">
             <summary class="flex justify-between items-center p-6 cursor-pointer list-none rounded-2xl">
               <span class="text-lg font-black text-brand-green-dark group-open:text-brand-green transition-colors">

@@ -3,6 +3,8 @@ backend:
   turbo_site_id: 91bdd6ab-6820-4e2f-8de1-1c23b7d6f065
   branch: main
 
+publish_mode: editorial_workflow
+
 locale: id
 media_folder: public/images/bank-mini
 public_folder: /images/bank-mini
@@ -21,33 +23,33 @@ collections:
       - name: indonesia
         label: Konten Bahasa Indonesia
         file: src/data/id.json
-        fields: &site-content-fields
+        fields:
           - label: Identitas
             name: branding
             widget: object
             fields:
-              - { label: Nama organisasi, name: organization_name, widget: string }
-              - { label: Nama sekolah, name: school_name, widget: string }
+              - { label: Nama organisasi, name: organization_name, widget: string, required: false }
+              - { label: Nama sekolah, name: school_name, widget: string, required: false }
           - label: Navigasi
             name: nav
             widget: object
             fields:
-              - { label: Beranda, name: home, widget: string }
-              - { label: Tentang, name: about, widget: string }
-              - { label: Layanan, name: services, widget: string }
-              - { label: Jelajahi Bank Mini, name: explore, widget: string }
-              - { label: Keunggulan, name: advantages, widget: string }
-              - { label: Lokasi, name: location, widget: string }
-              - { label: Kontak, name: contact, widget: string }
+              - { label: Beranda, name: home, widget: string, required: false }
+              - { label: Tentang, name: about, widget: string, required: false }
+              - { label: Layanan, name: services, widget: string, required: false }
+              - { label: Jelajahi Bank Mini, name: explore, widget: string, required: false }
+              - { label: Keunggulan, name: advantages, widget: string, required: false }
+              - { label: Lokasi, name: location, widget: string, required: false }
+              - { label: Kontak, name: contact, widget: string, required: false }
           - label: Hero
             name: hero
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul, name: headline, widget: string }
-              - { label: Deskripsi, name: subheadline, widget: text }
-              - { label: Tombol utama, name: cta_primary, widget: string }
-              - { label: Tombol kedua, name: cta_secondary, widget: string }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul, name: headline, widget: string, required: false }
+              - { label: Deskripsi, name: subheadline, widget: text, required: false }
+              - { label: Tombol utama, name: cta_primary, widget: string, required: false }
+              - { label: Tombol kedua, name: cta_secondary, widget: string, required: false }
               - label: Foto hero
                 name: image
                 widget: image
@@ -63,190 +65,450 @@ collections:
             name: about
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul, name: headline, widget: string }
-              - { label: Latar belakang, name: history_narration, widget: text }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul, name: headline, widget: string, required: false }
+              - { label: Latar belakang, name: history_narration, widget: text, required: false }
               - label: Perjalanan
                 name: timeline
                 widget: list
+                required: false
                 label_singular: Peristiwa
                 summary: '{{fields.year}} · {{fields.title}}'
                 fields:
-                  - { label: Tahun, name: year, widget: string }
-                  - { label: Judul, name: title, widget: string }
-                  - { label: Deskripsi, name: description, widget: text }
+                  - { label: Tahun, name: year, widget: string, required: false }
+                  - { label: Judul, name: title, widget: string, required: false }
+                  - { label: Deskripsi, name: description, widget: text, required: false }
               - label: Visi
                 name: visi
                 widget: object
                 fields:
-                  - { label: Label, name: title, widget: string }
-                  - { label: Pernyataan, name: text, widget: text }
+                  - { label: Label, name: title, widget: string, required: false }
+                  - { label: Pernyataan, name: text, widget: text, required: false }
               - label: Misi
                 name: misi
                 widget: object
                 fields:
-                  - { label: Label, name: title, widget: string }
-                  - { label: Pernyataan, name: text, widget: text }
+                  - { label: Label, name: title, widget: string, required: false }
+                  - { label: Pernyataan, name: text, widget: text, required: false }
               - label: Motto
                 name: motto
                 widget: object
                 fields:
-                  - { label: Label, name: title, widget: string }
-                  - { label: Pernyataan, name: text, widget: string }
+                  - { label: Label, name: title, widget: string, required: false }
+                  - { label: Pernyataan, name: text, widget: string, required: false }
           - label: Layanan
             name: services
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul bagian, name: headline, widget: string }
-              - { label: Deskripsi bagian, name: subheadline, widget: text }
-              - { label: Teks tombol informasi, name: cta, widget: string }
-              - label: Daftar layanan
-                name: items
-                widget: list
-                label_singular: Layanan
-                summary: '{{fields.title}}'
-                fields:
-                  - label: ID layanan
-                    name: id
-                    widget: string
-                    pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Gunakan huruf kecil dan tanda hubung. Samakan ID pada konten English.']
-                  - { label: Nama layanan, name: title, widget: string }
-                  - { label: Deskripsi, name: description, widget: text }
-                  - { label: Rincian, name: details, widget: list, label_singular: Rincian }
-                  - label: Foto layanan
-                    name: image
-                    widget: image
-                    required: false
-                    default: ''
-                    choose_url: false
-                    hint: Gunakan nama berkas unik; pilih aset yang sudah ada untuk digunakan ulang.
-                    media_library:
-                      config:
-                        max_file_size: 5242880
-                  - { label: Teks alternatif foto, name: image_alt, widget: string, required: false, default: '' }
-                  - label: Ikon
-                    name: icon
-                    widget: select
-                    options: [bank, savings, service, transfer, payment]
-                  - { label: Urutan tampil, name: order, widget: number, value_type: int, min: 0 }
-                  - { label: Layanan utama, name: featured, widget: boolean, default: false }
-                  - { label: Tampilkan di situs, name: published, widget: boolean, default: false }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul bagian, name: headline, widget: string, required: false }
+              - { label: Deskripsi bagian, name: subheadline, widget: text, required: false }
+              - { label: Teks tombol informasi, name: cta, widget: string, required: false }
           - label: Jelajahi Bank Mini
             name: space
             widget: object
             fields:
-              - { label: Label, name: eyebrow, widget: string }
-              - { label: Judul, name: title, widget: string }
-              - { label: Deskripsi, name: description, widget: text }
-              - { label: Judul ruang, name: roomTitle, widget: string }
-              - { label: Deskripsi ruang, name: roomDescription, widget: text }
-              - { label: Label pembelajaran, name: learningLabel, widget: string }
-              - { label: Judul pembelajaran, name: learningTitle, widget: string }
-              - { label: Deskripsi Teaching Factory, name: learningText, widget: text }
-              - { label: Label lokasi, name: locationLabel, widget: string }
-              - { label: Judul galeri, name: galleryTitle, widget: string }
-              - { label: Deskripsi galeri, name: galleryDescription, widget: text }
-              - { label: Judul galeri kosong, name: emptyTitle, widget: string }
-              - { label: Pesan galeri kosong, name: emptyText, widget: text }
-              - { label: Label kategori panduan, name: categories, widget: string }
-              - { label: Kategori dokumentasi, name: requestedCategories, widget: list, label_singular: Kategori }
-              - { label: Label filter, name: galleryFilterLabel, widget: string }
-              - { label: Filter semua, name: allCategories, widget: string }
-              - { label: Aksi buka foto, name: openImage, widget: string }
-              - { label: Aksi tutup, name: close, widget: string }
-              - { label: Aksi foto sebelumnya, name: previous, widget: string }
-              - { label: Aksi foto berikutnya, name: next, widget: string }
-              - { label: Catatan kategori, name: categoryDisclaimer, widget: text }
+              - { label: Label, name: eyebrow, widget: string, required: false }
+              - { label: Judul, name: title, widget: string, required: false }
+              - { label: Deskripsi, name: description, widget: text, required: false }
+              - { label: Judul ruang, name: roomTitle, widget: string, required: false }
+              - { label: Deskripsi ruang, name: roomDescription, widget: text, required: false }
+              - { label: Label pembelajaran, name: learningLabel, widget: string, required: false }
+              - { label: Judul pembelajaran, name: learningTitle, widget: string, required: false }
+              - { label: Deskripsi Teaching Factory, name: learningText, widget: text, required: false }
+              - { label: Label lokasi, name: locationLabel, widget: string, required: false }
+              - { label: Judul galeri, name: galleryTitle, widget: string, required: false }
+              - { label: Deskripsi galeri, name: galleryDescription, widget: text, required: false }
+              - { label: Judul galeri kosong, name: emptyTitle, widget: string, required: false }
+              - { label: Pesan galeri kosong, name: emptyText, widget: text, required: false }
+              - { label: Label kategori panduan, name: categories, widget: string, required: false }
+              - { label: Kategori dokumentasi, name: requestedCategories, widget: list, label_singular: Kategori, required: false }
+              - { label: Label filter, name: galleryFilterLabel, widget: string, required: false }
+              - { label: Filter semua, name: allCategories, widget: string, required: false }
+              - { label: Aksi buka foto, name: openImage, widget: string, required: false }
+              - { label: Aksi tutup, name: close, widget: string, required: false }
+              - { label: Aksi foto sebelumnya, name: previous, widget: string, required: false }
+              - { label: Aksi foto berikutnya, name: next, widget: string, required: false }
+              - { label: Catatan kategori, name: categoryDisclaimer, widget: text, required: false }
           - label: Alur Layanan
             name: process
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul, name: headline, widget: string }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul, name: headline, widget: string, required: false }
               - label: Langkah
                 name: steps
                 widget: list
+                required: false
                 label_singular: Langkah
                 fields:
-                  - { label: Judul, name: title, widget: string }
-                  - { label: Deskripsi, name: description, widget: text }
+                  - { label: Judul, name: title, widget: string, required: false }
+                  - { label: Deskripsi, name: description, widget: text, required: false }
           - label: Keunggulan
             name: advantages
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul, name: headline, widget: string }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul, name: headline, widget: string, required: false }
               - label: Daftar keunggulan
                 name: items
                 widget: list
+                required: false
                 label_singular: Keunggulan
                 fields:
-                  - { label: Judul, name: title, widget: string }
-                  - { label: Deskripsi, name: description, widget: text }
+                  - { label: Judul, name: title, widget: string, required: false }
+                  - { label: Deskripsi, name: description, widget: text, required: false }
+                  - label: Ikon
+                    name: icon
+                    widget: select
+                    options:
+                      - { label: Prinsip syariah, value: sharia }
+                      - { label: Edukasi, value: education }
+                      - { label: Lokasi, value: location }
+                      - { label: Biaya, value: fees }
+                    default: sharia
+                    hint: Pilih ikon yang paling sesuai dengan keunggulan ini.
           - label: Operasional
             name: operation
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul, name: title, widget: string }
-              - { label: Deskripsi, name: description, widget: text }
-              - { label: Informasi jadwal terverifikasi, name: schedule, widget: text }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul, name: title, widget: string, required: false }
+              - { label: Deskripsi, name: description, widget: text, required: false }
+              - { label: Informasi jadwal terverifikasi, name: schedule, widget: text, required: false }
+              - label: Foto area praktik
+                name: image
+                widget: image
+                required: false
+                default: ''
+                choose_url: false
+                hint: Gunakan foto resmi area praktik. Beri nama berkas unik dan isi teks alternatif.
+                media_library:
+                  config:
+                    max_file_size: 5242880
+              - { label: Teks alternatif foto, name: image_alt, widget: string, required: false, default: '' }
+              - { label: Label praktik, name: practice_label, widget: string, required: false }
+              - { label: Judul praktik, name: practice_title, widget: string, required: false }
           - label: Lokasi
             name: location
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul, name: headline, widget: string }
-              - { label: Deskripsi lokasi, name: address, widget: text }
-              - { label: Petunjuk, name: instruction, widget: text }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul, name: headline, widget: string, required: false }
+              - { label: Deskripsi lokasi, name: address, widget: text, required: false }
+              - { label: Petunjuk, name: instruction, widget: text, required: false }
               - { label: Tautan peta, name: map_link, widget: string, required: false, default: '', pattern: ['^$|^https://.+$', 'Gunakan tautan HTTPS.'] }
           - label: Kontak
             name: contact
             widget: object
             fields:
-              - { label: Judul kontak, name: headline, widget: string }
-              - { label: Pesan WhatsApp, name: whatsapp_message, widget: text }
-              - { label: Alamat sekolah, name: school_address, widget: text }
-              - { label: Email resmi sekolah, name: school_email, widget: email }
+              - { label: Judul kontak, name: headline, widget: string, required: false }
+              - { label: Pesan WhatsApp, name: whatsapp_message, widget: text, required: false }
+              - { label: Alamat sekolah, name: school_address, widget: text, required: false }
+              - { label: Email resmi sekolah, name: school_email, widget: email, required: false }
               - label: Kontak WhatsApp
                 name: people
                 widget: list
+                required: false
                 label_singular: Kontak
                 fields:
-                  - { label: Nama yang ditampilkan, name: name, widget: string }
-                  - { label: Nomor WhatsApp internasional tanpa tanda plus, name: phone, widget: string, pattern: ['^[0-9]{8,15}$', 'Gunakan 8–15 digit, tanpa spasi atau tanda plus.'] }
+                  - { label: Nama yang ditampilkan, name: name, widget: string, required: false }
+                  - { label: Nomor WhatsApp internasional tanpa tanda plus, name: phone, widget: string, pattern: ['^$|^[0-9]{8,15}$', 'Gunakan 8–15 digit, tanpa spasi atau tanda plus.'], required: false }
           - label: FAQ
             name: faq
             widget: object
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Judul, name: headline, widget: string }
-              - { label: Deskripsi, name: description, widget: text }
-              - label: Pertanyaan
-                name: items
-                widget: list
-                label_singular: Pertanyaan
-                summary: '{{fields.q}}'
-                fields:
-                  - label: ID FAQ
-                    name: id
-                    widget: string
-                    pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Gunakan ID yang sama pada konten English.']
-                  - { label: Pertanyaan, name: q, widget: string }
-                  - { label: Jawaban, name: a, widget: text }
-                  - { label: Urutan tampil, name: order, widget: number, value_type: int, min: 0 }
-                  - { label: Tampilkan di situs, name: published, widget: boolean, default: false }
+              - { label: Label, name: label, widget: string, required: false }
+              - { label: Judul, name: headline, widget: string, required: false }
+              - { label: Deskripsi, name: description, widget: text, required: false }
           - label: Footer
             name: footer
             widget: object
             fields:
-              - { label: Motto, name: motto, widget: string }
-              - { label: Hak cipta, name: copyright, widget: string }
+              - { label: Motto, name: motto, widget: string, required: false }
+              - { label: Hak cipta, name: copyright, widget: string, hint: 'Gunakan {year} untuk menampilkan tahun berjalan secara otomatis.', required: false }
       - name: english
         label: English website content
         file: src/data/en.json
-        fields: *site-content-fields
+        fields:
+          - label: Identity
+            name: branding
+            widget: object
+            fields:
+              - { label: Organization name, name: organization_name, widget: string, required: false }
+              - { label: School name, name: school_name, widget: string, required: false }
+          - label: Navigation
+            name: nav
+            widget: object
+            fields:
+              - { label: Home, name: home, widget: string, required: false }
+              - { label: About, name: about, widget: string, required: false }
+              - { label: Services, name: services, widget: string, required: false }
+              - { label: Explore the Bank Mini, name: explore, widget: string, required: false }
+              - { label: Advantages, name: advantages, widget: string, required: false }
+              - { label: Location, name: location, widget: string, required: false }
+              - { label: Contact, name: contact, widget: string, required: false }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Hero eyebrow text, name: label, widget: string, required: false }
+              - { label: Title, name: headline, widget: string, required: false }
+              - { label: Description, name: subheadline, widget: text, required: false }
+              - { label: Primary button, name: cta_primary, widget: string, required: false }
+              - { label: Secondary button, name: cta_secondary, widget: string, required: false }
+              - label: Hero photo
+                name: image
+                widget: image
+                required: false
+                default: ''
+                choose_url: false
+                hint: Use an official photo. Give the file a unique name; reuse an existing asset when possible.
+                media_library:
+                  config:
+                    max_file_size: 5242880
+              - { label: Photo alternative text, name: image_alt, widget: string, required: false, default: '' }
+          - label: Bank Mini profile
+            name: about
+            widget: object
+            fields:
+              - { label: Profile section label, name: label, widget: string, required: false }
+              - { label: Title, name: headline, widget: string, required: false }
+              - { label: Background, name: history_narration, widget: text, required: false }
+              - label: Timeline
+                name: timeline
+                widget: list
+                required: false
+                label_singular: Event
+                summary: '{{fields.year}} · {{fields.title}}'
+                fields:
+                  - { label: Year, name: year, widget: string, required: false }
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+              - label: Vision
+                name: visi
+                widget: object
+                fields:
+                  - { label: Vision heading, name: title, widget: string, required: false }
+                  - { label: Statement, name: text, widget: text, required: false }
+              - label: Mission
+                name: misi
+                widget: object
+                fields:
+                  - { label: Mission heading, name: title, widget: string, required: false }
+                  - { label: Statement, name: text, widget: text, required: false }
+              - label: Motto
+                name: motto
+                widget: object
+                fields:
+                  - { label: Motto heading, name: title, widget: string, required: false }
+                  - { label: Statement, name: text, widget: string, required: false }
+          - label: Services
+            name: services
+            widget: object
+            fields:
+              - { label: Services section label, name: label, widget: string, required: false }
+              - { label: Section title, name: headline, widget: string, required: false }
+              - { label: Section description, name: subheadline, widget: text, required: false }
+              - { label: Information button text, name: cta, widget: string, required: false }
+          - label: Explore the Bank Mini
+            name: space
+            widget: object
+            fields:
+              - { label: Explore section eyebrow, name: eyebrow, widget: string, required: false }
+              - { label: Title, name: title, widget: string, required: false }
+              - { label: Description, name: description, widget: text, required: false }
+              - { label: Room title, name: roomTitle, widget: string, required: false }
+              - { label: Room description, name: roomDescription, widget: text, required: false }
+              - { label: Learning label, name: learningLabel, widget: string, required: false }
+              - { label: Learning title, name: learningTitle, widget: string, required: false }
+              - { label: Teaching Factory description, name: learningText, widget: text, required: false }
+              - { label: Location label, name: locationLabel, widget: string, required: false }
+              - { label: Gallery title, name: galleryTitle, widget: string, required: false }
+              - { label: Gallery description, name: galleryDescription, widget: text, required: false }
+              - { label: Empty gallery title, name: emptyTitle, widget: string, required: false }
+              - { label: Empty gallery message, name: emptyText, widget: text, required: false }
+              - { label: Category label, name: categories, widget: string, required: false }
+              - { label: Documentation categories, name: requestedCategories, widget: list, label_singular: Category, required: false }
+              - { label: Filter label, name: galleryFilterLabel, widget: string, required: false }
+              - { label: All filter, name: allCategories, widget: string, required: false }
+              - { label: Open photo action, name: openImage, widget: string, required: false }
+              - { label: Close action, name: close, widget: string, required: false }
+              - { label: Previous photo action, name: previous, widget: string, required: false }
+              - { label: Next photo action, name: next, widget: string, required: false }
+              - { label: Category note, name: categoryDisclaimer, widget: text, required: false }
+          - label: Service flow
+            name: process
+            widget: object
+            fields:
+              - { label: Service flow section label, name: label, widget: string, required: false }
+              - { label: Title, name: headline, widget: string, required: false }
+              - label: Step
+                name: steps
+                widget: list
+                required: false
+                label_singular: Step
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+          - label: Advantages
+            name: advantages
+            widget: object
+            fields:
+              - { label: Advantages section label, name: label, widget: string, required: false }
+              - { label: Title, name: headline, widget: string, required: false }
+              - label: Advantage list
+                name: items
+                widget: list
+                required: false
+                label_singular: Advantage
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Icon
+                    name: icon
+                    widget: select
+                    options:
+                      - { label: Sharia principles, value: sharia }
+                      - { label: Education, value: education }
+                      - { label: Location, value: location }
+                      - { label: Fees, value: fees }
+                    default: sharia
+                    hint: Choose the icon that best matches this advantage.
+          - label: Operations
+            name: operation
+            widget: object
+            fields:
+              - { label: Operations section label, name: label, widget: string, required: false }
+              - { label: Title, name: title, widget: string, required: false }
+              - { label: Description, name: description, widget: text, required: false }
+              - { label: Verified schedule information, name: schedule, widget: text, required: false }
+              - label: Practice area photo
+                name: image
+                widget: image
+                required: false
+                default: ''
+                choose_url: false
+                hint: Use an official photo of the practice area. Give the file a unique name and provide alternative text.
+                media_library:
+                  config:
+                    max_file_size: 5242880
+              - { label: Photo alternative text, name: image_alt, widget: string, required: false, default: '' }
+              - { label: Practice label, name: practice_label, widget: string, required: false }
+              - { label: Practice title, name: practice_title, widget: string, required: false }
+          - label: Location
+            name: location
+            widget: object
+            fields:
+              - { label: Location section label, name: label, widget: string, required: false }
+              - { label: Title, name: headline, widget: string, required: false }
+              - { label: Location description, name: address, widget: text, required: false }
+              - { label: Directions, name: instruction, widget: text, required: false }
+              - { label: Map link, name: map_link, widget: string, required: false, default: '', pattern: ['^$|^https://.+$', 'Use an HTTPS link.'] }
+          - label: Contact
+            name: contact
+            widget: object
+            fields:
+              - { label: Contact heading, name: headline, widget: string, required: false }
+              - { label: WhatsApp message, name: whatsapp_message, widget: text, required: false }
+              - { label: School address, name: school_address, widget: text, required: false }
+              - { label: Official school email, name: school_email, widget: email, required: false }
+              - label: WhatsApp contacts
+                name: people
+                widget: list
+                required: false
+                label_singular: Contact
+                fields:
+                  - { label: Display name, name: name, widget: string, required: false }
+                  - { label: International WhatsApp number without a plus sign, name: phone, widget: string, pattern: ['^$|^[0-9]{8,15}$', 'Use 8–15 digits without spaces or a plus sign.'], required: false }
+          - label: FAQ
+            name: faq
+            widget: object
+            fields:
+              - { label: FAQ section label, name: label, widget: string, required: false }
+              - { label: Title, name: headline, widget: string, required: false }
+              - { label: Description, name: description, widget: text, required: false }
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - { label: Motto, name: motto, widget: string, required: false }
+              - { label: Copyright, name: copyright, widget: string, hint: 'Use {year} to display the current year automatically.', required: false }
+
+  - name: services
+    label: Layanan / Services
+    label_singular: Layanan / Service
+    folder: src/content/services
+    create: true
+    extension: json
+    format: json
+    identifier_field: id
+    slug: '{{id}}'
+    summary: '{{id}} · {{title.id}} / {{title.en}}'
+    fields:
+      - { label: ID stabil (slug), name: id, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Gunakan huruf kecil dan tanda hubung; jangan mengubah ID setelah diterbitkan.'] }
+      - label: Nama layanan / Service name
+        name: title
+        widget: object
+        required: false
+        fields:
+          - { label: Indonesia, name: id, widget: string, required: false }
+          - { label: English, name: en, widget: string, required: false }
+      - label: Deskripsi / Description
+        name: description
+        widget: object
+        required: false
+        fields:
+          - { label: Indonesia, name: id, widget: text, required: false }
+          - { label: English, name: en, widget: text, required: false }
+      - label: Rincian / Details
+        name: details
+        widget: object
+        required: false
+        fields:
+          - { label: Indonesia, name: id, widget: list, required: false, field: { label: Rincian, name: item, widget: string, required: false } }
+          - { label: English, name: en, widget: list, required: false, field: { label: Detail, name: item, widget: string, required: false } }
+      - { label: Foto layanan / Service photo, name: image, widget: image, required: false, default: '', choose_url: false, hint: Pilih foto resmi dan gunakan nama berkas unik. / Use an official photo and a unique filename., media_library: { config: { max_file_size: 5242880 } } }
+      - label: Teks alternatif foto / Photo alternative text
+        name: image_alt
+        widget: object
+        required: false
+        fields:
+          - { label: Indonesia, name: id, widget: string, required: false }
+          - { label: English, name: en, widget: string, required: false }
+      - { label: Ikon / Icon, name: icon, widget: select, options: [bank, savings, service, transfer, payment], hint: Wajib dipilih saat membuat entri. / Required when creating an entry. }
+      - { label: Urutan / Display order, name: order, widget: number, value_type: int, min: 0, required: false, hint: Boleh kosong saat draft; isi dengan angka unik sebelum review. / May be blank in draft; set a unique number before review. }
+      - { label: Layanan utama / Featured service, name: featured, widget: boolean, default: false }
+      - { label: Tampilkan di situs / Show on site, name: published, widget: boolean, default: false }
+
+  - name: faqs
+    label: FAQ bilingual
+    label_singular: Pertanyaan / Question
+    folder: src/content/faqs
+    create: true
+    extension: json
+    format: json
+    identifier_field: id
+    slug: '{{id}}'
+    summary: '{{id}} · {{question.id}} / {{question.en}}'
+    fields:
+      - { label: ID stabil (slug), name: id, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Gunakan huruf kecil dan tanda hubung; jangan mengubah ID setelah diterbitkan.'] }
+      - label: Pertanyaan / Question
+        name: question
+        widget: object
+        required: false
+        fields:
+          - { label: Indonesia, name: id, widget: string, required: false }
+          - { label: English, name: en, widget: string, required: false }
+      - label: Jawaban / Answer
+        name: answer
+        widget: object
+        required: false
+        fields:
+          - { label: Indonesia, name: id, widget: text, required: false }
+          - { label: English, name: en, widget: text, required: false }
+      - { label: Urutan / Display order, name: order, widget: number, value_type: int, min: 0, required: false, hint: Boleh kosong saat draft; isi dengan angka unik sebelum review. / May be blank in draft; set a unique number before review. }
+      - { label: Tampilkan di situs / Show on site, name: published, widget: boolean, default: false }
 
   - name: room-gallery
     label: Galeri Ruangan
@@ -257,7 +519,7 @@ collections:
     format: json
     identifier_field: id
     slug: '{{id}}'
-    fields: &localized-image-fields
+    fields:
       - label: ID konten
         name: id
         widget: string
@@ -265,35 +527,39 @@ collections:
       - label: Judul (dua bahasa)
         name: title
         widget: object
+        required: false
         fields:
-          - { label: Indonesia, name: id, widget: string }
-          - { label: English, name: en, widget: string }
+          - { label: Indonesia, name: id, widget: string, required: false }
+          - { label: English, name: en, widget: string, required: false }
       - label: Deskripsi (dua bahasa)
         name: description
         widget: object
+        required: false
         fields:
-          - { label: Indonesia, name: id, widget: text }
-          - { label: English, name: en, widget: text }
+          - { label: Indonesia, name: id, widget: text, required: false }
+          - { label: English, name: en, widget: text, required: false }
       - label: Teks alternatif (dua bahasa)
         name: alt
         widget: object
+        required: false
         fields:
-          - { label: Indonesia, name: id, widget: string }
-          - { label: English, name: en, widget: string }
-      - { label: Kategori dokumentasi, name: category, widget: string, hint: Gunakan kategori yang benar-benar sesuai dengan foto; kategori panduan bukan konfirmasi fasilitas. }
+          - { label: Indonesia, name: id, widget: string, required: false }
+          - { label: English, name: en, widget: string, required: false }
+      - { label: Kategori dokumentasi, name: category, widget: string, hint: Gunakan kategori yang benar-benar sesuai dengan foto; kategori panduan bukan konfirmasi fasilitas., required: false }
       - label: Foto asli
         name: image
         widget: image
+        required: false
         choose_url: false
         hint: Maksimum 5 MB. Gunakan nama berkas unik dan foto yang mendapat izin untuk dipublikasikan.
         media_library:
           config:
             max_file_size: 5242880
-      - { label: Lebar gambar dalam piksel, name: width, widget: number, value_type: int, min: 1, max: 10000 }
-      - { label: Tinggi gambar dalam piksel, name: height, widget: number, value_type: int, min: 1, max: 10000 }
+      - { label: Lebar gambar dalam piksel, name: width, widget: number, value_type: int, min: 1, max: 10000, required: false }
+      - { label: Tinggi gambar dalam piksel, name: height, widget: number, value_type: int, min: 1, max: 10000, required: false }
       - { label: Urutan tampil, name: order, widget: number, value_type: int, min: 0, default: 0 }
       - { label: Foto utama, name: featured, widget: boolean, default: false }
-      - { label: Publikasikan foto, name: published, widget: boolean, default: false }
+      - { label: Tampilkan foto di situs, name: published, widget: boolean, default: false, hint: Persetujuan Editorial Workflow tetap diperlukan sebelum perubahan masuk ke main. }
 
   - name: activity-documentation
     label: Dokumentasi Kegiatan
@@ -312,34 +578,38 @@ collections:
       - label: Judul (dua bahasa)
         name: title
         widget: object
+        required: false
         fields:
-          - { label: Indonesia, name: id, widget: string }
-          - { label: English, name: en, widget: string }
+          - { label: Indonesia, name: id, widget: string, required: false }
+          - { label: English, name: en, widget: string, required: false }
       - label: Deskripsi (dua bahasa)
         name: description
         widget: object
+        required: false
         fields:
-          - { label: Indonesia, name: id, widget: text }
-          - { label: English, name: en, widget: text }
+          - { label: Indonesia, name: id, widget: text, required: false }
+          - { label: English, name: en, widget: text, required: false }
       - label: Teks alternatif (dua bahasa)
         name: alt
         widget: object
+        required: false
         fields:
-          - { label: Indonesia, name: id, widget: string }
-          - { label: English, name: en, widget: string }
-      - { label: Tanggal kegiatan, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
-      - { label: Kategori, name: category, widget: string }
+          - { label: Indonesia, name: id, widget: string, required: false }
+          - { label: English, name: en, widget: string, required: false }
+      - { label: Tanggal kegiatan, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD', required: false }
+      - { label: Kategori, name: category, widget: string, required: false }
       - label: Foto kegiatan
         name: image
         widget: image
+        required: false
         choose_url: false
         hint: Maksimum 5 MB. Foto siswa yang dapat dikenali hanya boleh diterbitkan setelah izin dikonfirmasi.
         media_library:
           config:
             max_file_size: 5242880
-      - { label: Lebar gambar dalam piksel, name: width, widget: number, value_type: int, min: 1, max: 10000 }
-      - { label: Tinggi gambar dalam piksel, name: height, widget: number, value_type: int, min: 1, max: 10000 }
+      - { label: Lebar gambar dalam piksel, name: width, widget: number, value_type: int, min: 1, max: 10000, required: false }
+      - { label: Tinggi gambar dalam piksel, name: height, widget: number, value_type: int, min: 1, max: 10000, required: false }
       - { label: Urutan tampil, name: order, widget: number, value_type: int, min: 0, default: 0 }
       - { label: Ada siswa yang dapat dikenali, name: identifiableStudents, widget: boolean, default: false }
       - { label: Izin publikasi foto telah dikonfirmasi, name: permissionConfirmed, widget: boolean, default: false }
-      - { label: Publikasikan kegiatan, name: published, widget: boolean, default: false }
+      - { label: Tampilkan kegiatan di situs, name: published, widget: boolean, default: false, hint: Persetujuan Editorial Workflow tetap diperlukan sebelum perubahan masuk ke main. }

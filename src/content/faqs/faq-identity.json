@@ -1,0 +1,13 @@
+{
+  "id": "faq-identity",
+  "question": {
+    "id": "Apa itu LKM Mitra Siswa Abadi?",
+    "en": "What is LKM Mitra Siswa Abadi?"
+  },
+  "answer": {
+    "id": "LKM Mitra Siswa Abadi adalah bank mini syariah di SMKN 1 Bantul yang berfungsi sebagai sarana praktik siswa sekaligus penyedia layanan perbankan sekolah.",
+    "en": "LKM Mitra Siswa Abadi is a sharia mini bank at SMKN 1 Bantul that functions as a student practice facility as well as a school banking service provider."
+  },
+  "order": 1,
+  "published": true
+}

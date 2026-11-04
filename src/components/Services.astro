@@ -1,30 +1,46 @@
 ---
+import type { SiteContent } from '../data/siteContentSchema';
+import type { CollectionEntry } from 'astro:content';
+
 interface Props {
-  data: any;
+  data: SiteContent['services'];
+  items: CollectionEntry<'services'>[];
+  lang: 'id' | 'en';
 }
 
-const { data } = Astro.props;
-const services = data.items.filter((service: any) => service.published)
-  .sort((a: any, b: any) => a.order - b.order);
-const featured = services.find((service: any) => service.featured);
-const supporting = services.filter((service: any) => service.id !== featured?.id);
+const { data, items, lang } = Astro.props;
+const services = items.map(({ data: service }) => ({
+  ...service,
+  title: service.title[lang],
+  description: service.description[lang],
+  details: service.details[lang],
+  image_alt: service.image_alt[lang]
+})).filter((service) => service.published)
+  .sort((a, b) => a.order - b.order);
+const featured = services.find((service) => service.featured);
+const supporting = services.filter((service) => service.id !== featured?.id);
+const ctaLabel = data.cta || (lang === 'en' ? 'Learn more' : 'Pelajari lebih lanjut');
 ---
 
-<section id="services" class="py-24 bg-brand-bg relative overflow-hidden">
+<section id="services" class="py-24 bg-brand-bg relative overflow-hidden" aria-labelledby="services-title">
   <div class="container mx-auto px-6">
     <header class="max-w-3xl mb-16 reveal reveal-fade-right">
-      <div class="inline-flex items-center px-4 py-2 rounded-xl bg-brand-green-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-green/10">
-        {data.label}
-      </div>
-      <h2 class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-6">{data.headline}</h2>
-      <p class="text-xl text-brand-text-secondary max-w-2xl font-medium">{data.subheadline}</p>
+      {data.label && (
+        <div class="inline-flex items-center px-4 py-2 rounded-xl bg-brand-green-soft text-brand-green-dark text-xs font-black uppercase tracking-wider mb-6 border border-brand-green/10">
+          {data.label}
+        </div>
+      )}
+      <h2 id="services-title" class="text-3xl md:text-5xl font-black text-brand-green-deep leading-tight mb-6">{data.headline}</h2>
+      {data.subheadline && (
+        <p class="text-xl text-brand-text-secondary max-w-2xl font-medium">{data.subheadline}</p>
+      )}
     </header>
 
     {featured && (
       <article class="service-feature reveal reveal-clip">
         <div class="service-feature__visual reveal-mask">
           {featured.image ? (
-            <img src={featured.image} alt={featured.image_alt} loading="lazy" decoding="async" />
+            <img src={featured.image} alt={featured.image_alt || featured.title} loading="lazy" decoding="async" />
           ) : (
             <div class="service-feature__mark" aria-hidden="true">
               {featured.icon === 'bank' ? (
@@ -36,32 +52,32 @@ const supporting = services.filter((service: any) => service.id !== featured?.id
           )}
         </div>
         <div class="service-feature__copy">
-          <p class="service-kicker">{data.label}</p>
+          {data.label && <p class="service-kicker">{data.label}</p>}
           <h3>{featured.title}</h3>
-          <p class="service-description">{featured.description}</p>
-          {featured.details.length > 0 && (
+          {featured.description && <p class="service-description">{featured.description}</p>}
+          {featured.details && featured.details.length > 0 && (
             <ul class="service-details">
-              {featured.details.map((detail: string) => <li>{detail}</li>)}
+              {featured.details.map((detail) => <li>{detail}</li>)}
             </ul>
           )}
-          <a class="service-link" href="#contact">{data.cta}<span aria-hidden="true">→</span></a>
+          <a class="service-link" href="#contact">{ctaLabel}<span aria-hidden="true">→</span></a>
         </div>
       </article>
     )}
 
     {supporting.length > 0 && (
-      <div class="service-list" aria-label={data.label}>
-        {supporting.map((service: any) => (
+      <div class="service-list">
+        {supporting.map((service) => (
           <article class="service-row reveal reveal-fade-up">
             <div class="service-row__icon" aria-hidden="true">
-              {service.image ? <img src={service.image} alt={service.image_alt} loading="lazy" decoding="async" /> : <span>{service.icon === 'savings' ? '01' : service.icon === 'transfer' ? '02' : '03'}</span>}
+              {service.image ? <img src={service.image} alt={service.image_alt || service.title} loading="lazy" decoding="async" /> : <span>{service.icon === 'savings' ? '01' : service.icon === 'transfer' ? '02' : '03'}</span>}
             </div>
             <div class="service-row__copy">
               <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              {service.details.length > 0 && <ul>{service.details.map((detail: string) => <li>{detail}</li>)}</ul>}
+              {service.description && <p>{service.description}</p>}
+              {service.details && service.details.length > 0 && <ul>{service.details.map((detail) => <li>{detail}</li>)}</ul>}
             </div>
-            <a href="#contact" aria-label={`${data.cta}: ${service.title}`}>→</a>
+            <a href="#contact" aria-label={`${ctaLabel}: ${service.title}`}>→</a>
           </article>
         ))}
       </div>
@@ -87,14 +103,16 @@ const supporting = services.filter((service: any) => service.id !== featured?.id
   .service-link:hover span { transform:translateX(3px); }
   .service-list { margin-top:1.25rem; border-top:1px solid var(--color-brand-border); }
   .service-row { display:grid; grid-template-columns:4.5rem 1fr 2.5rem; gap:1.25rem; align-items:start; padding:1.5rem 0; border-bottom:1px solid var(--color-brand-border); }
-  .service-row__icon { display:grid; width:3.5rem; height:3.5rem; place-items:center; background:var(--color-brand-green-soft); color:var(--color-brand-green-dark); font-size:.75rem; font-weight:800; }
+  .service-row__icon { display:grid; width:3.5rem; height:3.5rem; place-items:center; border-radius:.75rem; background:var(--color-brand-green-soft); color:var(--color-brand-green-dark); font-weight:800; overflow:hidden; }
   .service-row__icon img { width:100%; height:100%; object-fit:cover; }
-  .service-row__copy h3 { margin-top:0; font-size:1.35rem; }
-  .service-row__copy > p { margin-top:.4rem; }
-  .service-row__copy ul { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.9rem; }
-  .service-row__copy li { padding:.4rem .6rem; background:#fff; color:var(--color-brand-text-secondary); font-size:.75rem; font-weight:700; }
-  .service-row > a { display:grid; width:2.5rem; height:2.5rem; place-items:center; border:1px solid var(--color-brand-border); color:var(--color-brand-green); font-size:1.3rem; transition:color 180ms ease,background-color 180ms ease; }
-  .service-row > a:hover { background:var(--color-brand-green); color:white; }
-  @media (max-width:700px) { .service-feature { grid-template-columns:1fr; } .service-feature__visual { min-height:15rem; } .service-feature__mark { min-height:15rem; } .service-details { grid-template-columns:1fr; } .service-row { grid-template-columns:3.25rem 1fr 2.5rem; gap:.75rem; } .service-row__icon { width:2.75rem; height:2.75rem; } }
-  @media (prefers-reduced-motion:reduce) { .service-link span { transition:none; } }
+  .service-row__copy > ul { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin-top:.6rem; }
+  .service-row__copy > ul li { color:var(--color-brand-text-secondary); font-size:.8rem; font-weight:600; }
+  .service-row > a { display:grid; width:2.5rem; height:2.5rem; place-items:center; border-radius:.5rem; border:1px solid var(--color-brand-border); color:var(--color-brand-green-dark); font-weight:800; transition:background-color 180ms ease,color 180ms ease; }
+  .service-row > a:hover { background:var(--color-brand-green-dark); color:#fff; }
+  @media (max-width:767px) {
+    .service-feature { grid-template-columns:1fr; }
+    .service-details { grid-template-columns:1fr; }
+    .service-row { grid-template-columns:1fr; gap:.75rem; }
+    .service-row > a { justify-self:start; }
+  }
 </style>

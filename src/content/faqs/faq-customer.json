@@ -1,0 +1,13 @@
+{
+  "id": "faq-customer",
+  "question": {
+    "id": "Siapa saja yang dapat menjadi nasabah?",
+    "en": "Who can become a customer?"
+  },
+  "answer": {
+    "id": "Layanan kami terbuka untuk seluruh siswa, guru, dan karyawan di lingkungan SMKN 1 Bantul.",
+    "en": "Our services are open to all students, teachers, and employees within SMKN 1 Bantul."
+  },
+  "order": 3,
+  "published": true
+}
