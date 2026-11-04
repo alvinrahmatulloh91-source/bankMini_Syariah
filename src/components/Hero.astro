@@ -9,66 +9,128 @@ interface Props {
 const { data, lang } = Astro.props;
 ---
 
-<section id="home" class="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
-  <div aria-hidden="true" class="absolute right-0 top-0 -z-10 h-full w-[28%] translate-x-16 skew-x-[-12deg] bg-brand-green-light"></div>
+<section id="home" class="relative isolate overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28">
+  <div aria-hidden="true" class="absolute inset-0 -z-20 bg-gradient-to-br from-brand-green-deep via-brand-green-dark to-brand-green"></div>
+  <div aria-hidden="true" class="absolute inset-0 -z-10 opacity-30">
+    <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-brand-orange blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-brand-green-soft blur-3xl"></div>
+  </div>
+  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:28px_28px]"></div>
 
   <div class="container mx-auto px-6">
-    <div class="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
-      <div class="flex-1 text-center lg:text-left">
+    <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-7 text-center lg:text-left">
         {data.label && (
-          <div class="hero-kicker mb-7">
-            <span class="hero-rule" aria-hidden="true"></span>
+          <div class="hero-kicker mb-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-wider text-brand-green-soft backdrop-blur">
+            <span class="h-2 w-2 rounded-full bg-brand-orange"></span>
             {data.label}
           </div>
         )}
 
-        <h1 class="hero-headline mb-8 text-4xl font-black leading-[1.05] text-brand-green-deep md:text-6xl lg:text-7xl">
+        <h1 class="hero-headline mb-6 text-4xl font-black leading-[1.05] text-white md:text-6xl lg:text-7xl">
           <span>{data.headline}</span>
         </h1>
 
         {data.subheadline && (
-          <p class="hero-copy mx-auto mb-10 max-w-2xl text-lg font-medium leading-relaxed text-brand-text-secondary md:text-xl lg:mx-0">
+          <p class="hero-copy mx-auto mb-10 max-w-2xl text-lg font-medium leading-relaxed text-brand-green-soft/90 md:text-xl lg:mx-0">
             {data.subheadline}
           </p>
         )}
 
         {(data.cta_primary || data.cta_secondary) && (
-          <div class="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+          <div class="mb-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
             {data.cta_primary && (
-              <a href="#services" class="hero-cta hero-cta-primary group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-green px-8 py-4 text-base font-bold text-white hover:-translate-y-0.5 hover:bg-brand-green-dark hover:shadow-lg hover:shadow-brand-green/15 active:translate-y-0 sm:w-auto">
+              <a href="#services" class="hero-cta hero-cta-primary group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-orange px-8 py-4 text-base font-bold text-brand-green-deep shadow-lg shadow-brand-orange/25 transition hover:-translate-y-0.5 hover:bg-brand-orange-dark hover:text-white sm:w-auto">
                 {data.cta_primary}
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
             )}
 
             {data.cta_secondary && (
-              <a href="#contact" class="hero-cta hero-cta-secondary flex w-full items-center justify-center gap-2 rounded-xl border border-brand-green/30 bg-white px-8 py-4 text-base font-bold text-brand-green hover:-translate-y-0.5 hover:bg-brand-green-soft active:translate-y-0 sm:w-auto">
+              <a href="#contact" class="hero-cta hero-cta-secondary flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-8 py-4 text-base font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-brand-green-deep sm:w-auto">
                 {data.cta_secondary}
               </a>
             )}
           </div>
         )}
+
+        <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-brand-green-soft/90 lg:justify-start">
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            {lang === 'en' ? 'Sharia compliant' : 'Syariah'}
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /></svg>
+            {lang === 'en' ? 'School-based learning' : 'Pembelajaran sekolah'}
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            {lang === 'en' ? 'Secure transactions' : 'Transaksi aman'}
+          </span>
+        </div>
       </div>
 
-      <div class="hero-visual relative w-full max-w-2xl flex-1">
-        <div class="group/hero-img relative z-10 aspect-[4/3] overflow-hidden rounded-2xl border border-brand-border bg-brand-green-light">
-          <span class="hero-accent-line" aria-hidden="true"></span>
-          <div class="hero-visual-art absolute inset-0 flex items-center justify-center">
+      <div class="hero-visual relative lg:col-span-5">
+        <div class="relative mx-auto max-w-md">
+          <div class="relative z-10 overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-md">
+            <div class="mb-8 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-orange text-brand-green-deep">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-black uppercase tracking-wider text-brand-green-soft/80">LKM Mitra Siswa Abadi</p>
+                  <p class="text-sm font-bold text-white">Bank Mini Syariah</p>
+                </div>
+              </div>
+              <span class="rounded-full bg-brand-orange/20 px-3 py-1 text-xs font-black text-brand-orange">Syariah</span>
+            </div>
+
             {data.image ? (
-              <img class="h-full w-full object-cover" src={data.image} alt={data.image_alt || (lang === 'en' ? 'Bank Mini photo' : 'Foto Bank Mini')} fetchpriority="high" decoding="async" />
+              <div class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
+                <img class="h-full w-full object-cover" src={data.image} alt={data.image_alt || (lang === 'en' ? 'Bank Mini photo' : 'Foto Bank Mini')} fetchpriority="high" decoding="async" />
+              </div>
             ) : (
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 text-brand-green/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
+              <div class="mb-6 flex aspect-[4/3] items-center justify-center rounded-2xl border border-white/10 bg-brand-green-deep/40">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
             )}
+
+            <div class="flex items-end justify-between">
+              <div>
+                <p class="text-[10px] font-black uppercase tracking-widest text-brand-green-soft/70">{lang === 'en' ? 'Account holder' : 'Pemegang rekening'}</p>
+                <p class="text-sm font-bold text-white">Siswa SMKN 1 Bantul</p>
+              </div>
+              <div class="text-right">
+                <p class="text-[10px] font-black uppercase tracking-widest text-brand-green-soft/70">{lang === 'en' ? 'Status' : 'Status'}</p>
+                <p class="text-sm font-bold text-brand-orange">{lang === 'en' ? 'Active' : 'Aktif'}</p>
+              </div>
+            </div>
           </div>
-          <p class="absolute bottom-5 left-5 right-5 border-l-2 border-brand-orange bg-white px-4 py-3 text-sm font-semibold leading-relaxed text-brand-green-deep">
-            {lang === 'en' ? 'A learning space for sharia banking practice' : 'Ruang belajar praktik perbankan syariah'}
-          </p>
+
+          <div class="absolute -bottom-6 -left-6 z-20 hidden rounded-2xl border border-brand-border bg-white p-4 shadow-xl sm:block">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green-soft text-brand-green">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </div>
+              <div>
+                <p class="text-[10px] font-black uppercase tracking-wider text-brand-text-secondary">{lang === 'en' ? 'Operating hours' : 'Jam operasional'}</p>
+                <p class="text-sm font-bold text-brand-green-deep">{lang === 'en' ? 'School days' : 'Hari sekolah'}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div aria-hidden="true" class="absolute bottom-0 left-0 right-0 -z-10">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+      <path d="M0 80L60 72C120 64 240 48 360 40C480 32 600 32 720 36C840 40 960 48 1080 52C1200 56 1320 56 1380 56L1440 56V80H0Z" fill="#F8FAF8" />
+    </svg>
   </div>
 </section>

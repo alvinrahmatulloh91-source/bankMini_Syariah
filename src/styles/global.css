@@ -381,8 +381,8 @@ html.motion-ready .reveal-clip:not(.active) .location-pin {
 }
 
 @keyframes visual-curtain {
-  from { clip-path: inset(0 0 0 100% round 1rem); }
-  to { clip-path: inset(0 round 1rem); }
+  from { clip-path: inset(0 0 0 100% round 1.5rem); }
+  to { clip-path: inset(0 round 1.5rem); }
 }
 
 @keyframes copy-arrive {
