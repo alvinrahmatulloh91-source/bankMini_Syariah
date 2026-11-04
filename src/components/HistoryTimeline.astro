@@ -20,7 +20,7 @@ const { items } = Astro.props;
 
   <div class="space-y-12">
     {items.map((item, index) => (
-      <div class={`timeline-row group relative flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''} reveal ${index % 2 === 0 ? 'reveal-fade-right' : 'reveal-fade-left'} stagger-${(index % 3) + 1}`} data-scroll-reveal>
+      <div class={`timeline-row group relative flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''} reveal ${index % 2 === 0 ? 'reveal-fade-right' : 'reveal-fade-left'} stagger-${(index % 3) + 1}`}>
         <!-- Dot Timeline -->
         <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-brand-green border-4 border-brand-green-soft rounded-full -translate-x-1/2 z-10 hidden md:block transition-transform duration-500 group-hover:scale-150" aria-hidden="true"></div>
 
