@@ -60,7 +60,7 @@
   "space": {
     "eyebrow": "Explore the Bank Mini",
     "title": "A closer look at the Bank Mini",
-    "description": "Get to know the banking service environment and sharia banking learning facilities at SMKN 1 Bantul.",
+    "description": "This gallery uses stock photos as demo illustrations, not documentation of Bank Mini SMKN 1 Bantul spaces or facilities.",
     "roomTitle": "Service and learning space",
     "roomDescription": "The Bank Mini is in the west wing of the main field building, on the second floor, in the southernmost room near the stairs. Photos of the room and facilities will be added when official documentation is available.",
     "learningLabel": "Practical learning",
@@ -68,7 +68,7 @@
     "learningText": "The Bank Mini serves as a Teaching Factory and a setting for practical banking lessons. These lessons apply sharia principles, in line with the LKM mission.",
     "locationLabel": "Location",
     "galleryTitle": "Room documentation",
-    "galleryDescription": "Photos will be added by the administrator once Bank Mini documentation is available.",
+    "galleryDescription": "Demo photos illustrating services and activities; these are not photos of the location or official Bank Mini documentation.",
     "emptyTitle": "Room photos are not available yet",
     "emptyText": "An administrator can add authentic photos of the room, service areas, facilities, and practice activities through the CMS once it is connected.",
     "categories": "Documentation categories to be filled",
@@ -87,7 +87,7 @@
     "close": "Close",
     "previous": "Previous photo",
     "next": "Next photo",
-    "categoryDisclaimer": "These are documentation prompts, not confirmation that each facility is available."
+    "categoryDisclaimer": "All gallery images are demo photos, not location documentation or proof that facilities are available."
   },
   "process": {
     "label": "How It Works",
@@ -160,11 +160,11 @@
     "people": [
       {
         "name": "Mrs. Ririh",
-        "phone": "6281226842933"
+        "phone": "6281226962933"
       },
       {
         "name": "Mrs. Tantri",
-        "phone": "6282133314485"
+        "phone": "628212024465"
       }
     ],
     "school_address": "Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188",

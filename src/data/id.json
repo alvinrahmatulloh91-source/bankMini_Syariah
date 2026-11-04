@@ -60,7 +60,7 @@
   "space": {
     "eyebrow": "Jelajahi Bank Mini",
     "title": "Lebih dekat dengan Bank Mini",
-    "description": "Kenali lingkungan pelayanan dan fasilitas pembelajaran perbankan syariah di SMKN 1 Bantul.",
+    "description": "Galeri ini memakai foto stok sebagai ilustrasi demo, bukan dokumentasi ruang atau fasilitas Bank Mini SMKN 1 Bantul.",
     "roomTitle": "Ruang layanan dan pembelajaran",
     "roomDescription": "Bank Mini berada di gedung sayap barat lapangan utama, lantai 2, ruang paling selatan, dekat tangga. Foto ruang dan fasilitas akan ditampilkan setelah dokumentasi resmi tersedia.",
     "learningLabel": "Pembelajaran praktik",
@@ -68,7 +68,7 @@
     "learningText": "Bank Mini berfungsi sebagai Teaching Factory dan lingkungan praktik perbankan. Pembelajaran menerapkan prinsip syariah dalam praktik perbankan, sejalan dengan misi LKM.",
     "locationLabel": "Lokasi",
     "galleryTitle": "Dokumentasi ruang",
-    "galleryDescription": "Foto akan ditambahkan oleh pengelola setelah dokumentasi Bank Mini tersedia.",
+    "galleryDescription": "Foto demo untuk mengilustrasikan layanan dan kegiatan; bukan foto lokasi atau dokumentasi resmi Bank Mini.",
     "emptyTitle": "Foto ruang belum tersedia",
     "emptyText": "Pengelola dapat menambahkan foto asli ruang, area pelayanan, fasilitas, dan kegiatan praktik melalui CMS setelah CMS terhubung.",
     "categories": "Kategori dokumentasi yang dapat diisi",
@@ -87,7 +87,7 @@
     "close": "Tutup",
     "previous": "Foto sebelumnya",
     "next": "Foto berikutnya",
-    "categoryDisclaimer": "Kategori ini adalah panduan dokumentasi, bukan konfirmasi bahwa setiap fasilitas tersedia."
+    "categoryDisclaimer": "Semua gambar galeri ini adalah foto demo, bukan dokumentasi lokasi atau bukti ketersediaan fasilitas."
   },
   "process": {
     "label": "Alur Pelayanan",
@@ -160,11 +160,11 @@
     "people": [
       {
         "name": "Ibu Ririh",
-        "phone": "6281226842933"
+        "phone": "6281226962933"
       },
       {
         "name": "Ibu Tantri",
-        "phone": "6282133314485"
+        "phone": "628212024465"
       }
     ],
     "school_address": "Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188",

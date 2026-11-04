@@ -1,0 +1,22 @@
+{
+  "id": "demo-finance-desk",
+  "title": {
+    "id": "Ilustrasi meja administrasi",
+    "en": "Administration desk illustration"
+  },
+  "description": {
+    "id": "Foto stok berkas dan alat hitung untuk ilustrasi demo administrasi keuangan.",
+    "en": "Stock photo of paperwork and a calculator used as a demo illustration of financial administration."
+  },
+  "alt": {
+    "id": "Ilustrasi demo berkas dan kalkulator di atas meja",
+    "en": "Demo illustration of documents and a calculator on a desk"
+  },
+  "category": "Foto demo",
+  "image": "/images/bank-mini/demo/finance-desk.jpg",
+  "width": 1200,
+  "height": 689,
+  "order": 3,
+  "featured": false,
+  "published": true
+}

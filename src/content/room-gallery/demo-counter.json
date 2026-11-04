@@ -1,0 +1,22 @@
+{
+  "id": "demo-counter",
+  "title": {
+    "id": "Ilustrasi layanan transaksi",
+    "en": "Transaction service illustration"
+  },
+  "description": {
+    "id": "Foto stok untuk demo suasana pelayanan transaksi. Bukan foto Bank Mini SMKN 1 Bantul.",
+    "en": "Stock photo used to demonstrate a transaction service setting. Not a photo of Bank Mini SMKN 1 Bantul."
+  },
+  "alt": {
+    "id": "Ilustrasi demo pelanggan melakukan pembayaran di meja layanan",
+    "en": "Demo illustration of a customer making a payment at a service counter"
+  },
+  "category": "Foto demo",
+  "image": "/images/bank-mini/demo/transaction-counter.jpg",
+  "width": 1200,
+  "height": 801,
+  "order": 1,
+  "featured": true,
+  "published": true
+}

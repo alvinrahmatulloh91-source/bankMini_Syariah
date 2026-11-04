@@ -1,0 +1,22 @@
+{
+  "id": "demo-payment-terminal",
+  "title": {
+    "id": "Ilustrasi perangkat pembayaran",
+    "en": "Payment terminal illustration"
+  },
+  "description": {
+    "id": "Foto stok perangkat pembayaran sebagai contoh ilustrasi layanan, bukan dokumentasi fasilitas Bank Mini.",
+    "en": "Stock photo of payment equipment used to illustrate a service, not documentation of Bank Mini facilities."
+  },
+  "alt": {
+    "id": "Ilustrasi demo penggunaan perangkat pembayaran di meja kasir",
+    "en": "Demo illustration of a payment device being used at a counter"
+  },
+  "category": "Foto demo",
+  "image": "/images/bank-mini/demo/card-payment.jpg",
+  "width": 1200,
+  "height": 800,
+  "order": 2,
+  "featured": false,
+  "published": true
+}

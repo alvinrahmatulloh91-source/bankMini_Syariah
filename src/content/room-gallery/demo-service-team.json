@@ -1,0 +1,22 @@
+{
+  "id": "demo-service-team",
+  "title": {
+    "id": "Ilustrasi suasana kerja tim",
+    "en": "Team workspace illustration"
+  },
+  "description": {
+    "id": "Foto stok suasana kerja tim sebagai ilustrasi demo; orang pada foto bukan siswa atau petugas Bank Mini.",
+    "en": "Stock photo of a team workspace used as a demo illustration; the people shown are not Bank Mini students or staff."
+  },
+  "alt": {
+    "id": "Ilustrasi demo beberapa orang berdiskusi di ruang kerja",
+    "en": "Demo illustration of people discussing in a workspace"
+  },
+  "category": "Foto demo",
+  "image": "/images/bank-mini/demo/practice-team.jpg",
+  "width": 1200,
+  "height": 900,
+  "order": 4,
+  "featured": false,
+  "published": true
+}
