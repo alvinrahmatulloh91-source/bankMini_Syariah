@@ -20,13 +20,6 @@ const { data, lang } = Astro.props;
   <div class="container mx-auto px-6">
     <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-7 text-center lg:text-left">
-        {data.label && (
-          <div class="hero-kicker mb-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-wider text-brand-green-soft backdrop-blur">
-            <span class="h-2 w-2 rounded-full bg-brand-orange"></span>
-            {data.label}
-          </div>
-        )}
-
         <h1 class="hero-headline mb-6 text-4xl font-black leading-[1.05] text-white md:text-6xl lg:text-7xl">
           <span>{data.headline}</span>
         </h1>
@@ -74,7 +67,7 @@ const { data, lang } = Astro.props;
 
       <div class="hero-visual relative lg:col-span-5">
         <div class="relative mx-auto max-w-md">
-          <div class="relative z-10 overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-md">
+          <div class="hero-visual-art relative z-10 overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-md">
             <div class="mb-8 flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-orange text-brand-green-deep">

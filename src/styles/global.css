@@ -280,16 +280,6 @@ html.motion-ready .reveal-clip:not(.active) .location-pin {
   transform: translateY(-0.75rem) scale(0.88);
 }
 
-.hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--color-brand-green-dark);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
 .hero-rule {
   display: inline-block;
   width: 2rem;
@@ -366,7 +356,7 @@ html.motion-ready .reveal-clip:not(.active) .location-pin {
     animation: copy-arrive 520ms var(--ease-out-expo) 350ms both;
   }
 
-  .hero-visual {
+  .hero-visual-art {
     animation: visual-curtain 820ms var(--ease-out-expo) 160ms both;
   }
 
@@ -415,6 +405,7 @@ html.motion-ready .reveal-clip:not(.active) .location-pin {
   .hero-copy,
   .hero-cta,
   .hero-visual,
+  .hero-visual-art,
   .hero-accent-line,
   .reveal-clip .reveal-mask,
   .location-pin,

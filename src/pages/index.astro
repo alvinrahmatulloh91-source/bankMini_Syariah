@@ -12,6 +12,7 @@ import Location from '@components/Location.astro';
 import Footer from '@components/Footer.astro';
 import RoomGallery from '@components/RoomGallery.astro';
 import ActivityDocumentation from '@components/ActivityDocumentation.astro';
+import SectionTransition from '@components/SectionTransition.astro';
 import { getCollection } from 'astro:content';
 import { siteContent } from '@data/siteContent';
 import { validateContentMedia } from '@data/validateContentMedia';
@@ -38,16 +39,23 @@ validateContentMedia([
 
   <main id="main-content" tabindex="-1">
     <Hero data={data.hero} lang="id" />
+    <SectionTransition from="#F8FAF8" to="#FFFFFF" height="2rem" />
     <About data={data.about} />
+    <SectionTransition from="#FFFFFF" to="#F8FAF8" />
     <Services data={data.services} items={services} lang="id" />
     <RoomGallery data={data.space} address={data.location.address} lang="id" items={roomGallery} />
     <ActivityDocumentation items={activityDocumentation} lang="id" />
+    <SectionTransition from="#F8FAF8" to="#0B3D2E" />
     <ServiceProcess data={data.process} />
+    <SectionTransition from="#0B3D2E" to="#FFFFFF" />
     <Advantages data={data.advantages} />
+    <SectionTransition from="#FFFFFF" to="#F8FAF8" />
     <OperationInfo data={data.operation} />
+    <SectionTransition from="#F8FAF8" to="#FFFFFF" />
     <FAQ data={data.faq} items={faqs} lang="id" />
     <Location data={data.location} contactData={data.contact} lang="id" />
   </main>
 
+<SectionTransition from="#FFFFFF" to="#0B3D2E" />
   <Footer data={data.footer} navData={data.nav} branding={data.branding} contactData={data.contact} lang="id" />
 </MainLayout>

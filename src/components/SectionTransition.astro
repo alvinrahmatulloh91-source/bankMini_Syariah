@@ -1,0 +1,22 @@
+---
+interface Props {
+  from: string;
+  to: string;
+  height?: string;
+}
+
+const { from, to, height = '4.5rem' } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class="section-transition"
+  style={`--transition-from:${from};--transition-to:${to};height:${height};`}
+></div>
+
+<style>
+  .section-transition {
+    width: 100%;
+    background: linear-gradient(to bottom, var(--transition-from), var(--transition-to));
+  }
+</style>
