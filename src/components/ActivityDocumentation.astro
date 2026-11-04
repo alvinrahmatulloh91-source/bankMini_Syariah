@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  items: CollectionEntry<'activityDocumentation'>[];
+  lang: 'id' | 'en';
+}
+
+const { items, lang } = Astro.props;
+const published = items.filter((item) => item.data.published)
+  .sort((a, b) => a.data.order - b.data.order || b.data.date.localeCompare(a.data.date));
+---
+
+{published.length > 0 && (
+  <section class="activity-section" aria-labelledby="activity-title">
+    <div class="activity-shell">
+      <header>
+        <p>{lang === 'id' ? 'Dokumentasi' : 'Documentation'}</p>
+        <h2 id="activity-title">{lang === 'id' ? 'Kegiatan Bank Mini' : 'Bank Mini activities'}</h2>
+      </header>
+      <div class="activity-list">
+        {published.map((item) => (
+          <article class="activity-entry">
+            <img src={item.data.image} width={item.data.width} height={item.data.height} alt={item.data.alt[lang]} loading="lazy" decoding="async" />
+            <div>
+              <p class="activity-meta"><time datetime={item.data.date}>{item.data.date}</time><span>{item.data.category}</span></p>
+              <h3>{item.data.title[lang]}</h3>
+              <p>{item.data.description[lang]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .activity-section { padding: clamp(4rem,8vw,7rem) 0; background: #fff; }
+  .activity-shell { width: min(100% - 3rem,76rem); margin-inline: auto; }
+  header > p { color: var(--color-brand-green); font-size: .75rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  header h2 { max-width: 14ch; margin-top: .7rem; color: var(--color-brand-green-deep); font-size: clamp(2rem,4vw,3.25rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+  .activity-list { margin-top: 2.5rem; border-top: 1px solid var(--color-brand-border); }
+  .activity-entry { display: grid; grid-template-columns: minmax(12rem,.72fr) 1.28fr; gap: clamp(1.25rem,4vw,3.5rem); align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--color-brand-border); }
+  .activity-entry img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--color-brand-green-soft); }
+  .activity-meta { display: flex; flex-wrap: wrap; gap: .6rem 1rem; color: var(--color-brand-green); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .activity-entry h3 { margin-top: .6rem; color: var(--color-brand-green-deep); font-size: clamp(1.4rem,2.4vw,2rem); font-weight: 800; line-height: 1.2; }
+  .activity-entry div > p:last-child { max-width: 42rem; margin-top: .6rem; color: var(--color-brand-text-secondary); line-height: 1.7; }
+  @media (max-width: 640px) { .activity-shell { width: min(100% - 2rem,38rem); } .activity-entry { grid-template-columns: 1fr; gap: 1rem; } }
+  @media (prefers-reduced-motion: reduce) { .activity-entry { scroll-behavior: auto; } }
+</style>

@@ -13,7 +13,9 @@
     "headline": "Safe and Halal with Sharia",
     "subheadline": "Providing Islamic savings and banking transaction services while serving as a practical learning facility for students of SMKN 1 Bantul.",
     "cta_primary": "Explore Our Services",
-    "cta_secondary": "Contact Us on WhatsApp"
+    "cta_secondary": "Contact Us on WhatsApp",
+    "image": "",
+    "image_alt": ""
   },
   "about": {
     "label": "About Us",
@@ -53,31 +55,48 @@
     "label": "Our Services",
     "headline": "Superior Products and Services",
     "subheadline": "Easy, safe banking solutions in accordance with sharia principles.",
-    "bsi_agen": {
-      "title": "BSI Agent (Laku Pandai)",
-      "description": "The main service that can be utilized by the school community for various transaction needs.",
-      "items": [
-        "Cash deposit",
-        "Cash withdrawal",
-        "Interbank transfer",
-        "PDAM & BPJS payment",
-        "School Fee (SPP) payment",
-        "Top up e-Wallet (OVO, GoPay, ShopeePay)",
-        "PLN tokens & Credit purchase"
-      ]
-    },
-    "tabungan": {
-      "title": "Student Savings",
-      "description": "Special student savings service with pure sharia principles.",
-      "features": [
-        "Wadiah Principle (No Interest)",
-        "No Monthly Administration Fees",
-        "Initial Deposit only IDR 10,000",
-        "Subsequent Deposits min IDR 5,000",
-        "Minimum Balance IDR 10,000",
-        "Account Closing Fee IDR 10,000"
-      ]
-    }
+    "cta": "More information",
+    "items": [
+      {
+        "id": "bsi-agen",
+        "title": "BSI Agent (Laku Pandai)",
+        "description": "The main service that can be utilized by the school community for various transaction needs.",
+        "details": [
+          "Cash deposit",
+          "Cash withdrawal",
+          "Interbank transfer",
+          "PDAM & BPJS payment",
+          "School Fee (SPP) payment",
+          "Top up e-Wallet (OVO, GoPay, ShopeePay)",
+          "PLN tokens & Credit purchase"
+        ],
+        "image": "",
+        "image_alt": "",
+        "icon": "bank",
+        "order": 1,
+        "featured": true,
+        "published": true
+      },
+      {
+        "id": "tabungan-siswa",
+        "title": "Student Savings",
+        "description": "Special student savings service with pure sharia principles.",
+        "details": [
+          "Wadiah Principle (No Interest)",
+          "No Monthly Administration Fees",
+          "Initial Deposit only IDR 10,000",
+          "Subsequent Deposits min IDR 5,000",
+          "Minimum Balance IDR 10,000",
+          "Account Closing Fee IDR 10,000"
+        ],
+        "image": "",
+        "image_alt": "",
+        "icon": "savings",
+        "order": 2,
+        "featured": false,
+        "published": true
+      }
+    ]
   },
   "space": {
     "eyebrow": "Explore the Bank Mini",
@@ -94,7 +113,15 @@
     "emptyTitle": "Room photos are not available yet",
     "emptyText": "The administrator can add authentic photos of the room, service areas, facilities, and practice activities through the CMS once it is connected.",
     "categories": "Documentation categories to be filled",
-    "requestedCategories": ["Room overview", "Teller area", "Customer service", "Customer area", "Facilities", "Banking practice", "Activity documentation"],
+    "requestedCategories": [
+      "Room overview",
+      "Teller area",
+      "Customer service",
+      "Customer area",
+      "Facilities",
+      "Banking practice",
+      "Activity documentation"
+    ],
     "galleryFilterLabel": "Choose a photo category",
     "allCategories": "All",
     "openImage": "Open photo",
@@ -157,15 +184,24 @@
     "label": "Our Location",
     "headline": "Find Our Location",
     "address": "West wing building of the main field, 2nd floor, southernmost room, near the stairs of SMKN 1 Bantul.",
-    "instruction": "Please go up to the 2nd floor via the stairs in the west wing to find our service room."
+    "instruction": "Please go up to the 2nd floor via the stairs in the west wing to find our service room.",
+    "map_link": ""
   },
   "contact": {
     "headline": "Contact Manager",
     "whatsapp_message": "Hello, I would like to ask about the LKM Mitra Siswa Abadi Bank Mini SMKN 1 Bantul service.",
     "people": [
-      { "name": "Mrs. Ririh", "phone": "6281226842933" },
-      { "name": "Mrs. Tantri", "phone": "6282133314485" }
-    ]
+      {
+        "name": "Mrs. Ririh",
+        "phone": "6281226842933"
+      },
+      {
+        "name": "Mrs. Tantri",
+        "phone": "6282133314485"
+      }
+    ],
+    "school_address": "Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188",
+    "school_email": "info@smkn1bantul.sch.id"
   },
   "faq": {
     "label": "FAQ",
@@ -174,24 +210,40 @@
     "items": [
       {
         "q": "What is LKM Mitra Siswa Abadi?",
-        "a": "LKM Mitra Siswa Abadi is a sharia mini bank at SMKN 1 Bantul that functions as a student practice facility as well as a school banking service provider."
+        "a": "LKM Mitra Siswa Abadi is a sharia mini bank at SMKN 1 Bantul that functions as a student practice facility as well as a school banking service provider.",
+        "id": "faq-identity",
+        "order": 1,
+        "published": true
       },
       {
         "q": "What is meant by Wadiah savings?",
-        "a": "Wadiah is pure entrustment. In our mini bank, this means your savings are safe, no interest, and no monthly admin fee deductions."
+        "a": "Wadiah is pure entrustment. In our mini bank, this means your savings are safe, no interest, and no monthly admin fee deductions.",
+        "id": "faq-wadiah",
+        "order": 2,
+        "published": true
       },
       {
         "q": "Who can become a customer?",
-        "a": "Our services are open to all students, teachers, and employees within SMKN 1 Bantul."
+        "a": "Our services are open to all students, teachers, and employees within SMKN 1 Bantul.",
+        "id": "faq-customer",
+        "order": 3,
+        "published": true
       },
       {
         "q": "When is teller service available?",
-        "a": "Our tellers are ready to serve you on school days, especially during student break hours."
+        "a": "Our tellers are ready to serve you on school days, especially during student break hours.",
+        "id": "faq-hours",
+        "order": 4,
+        "published": true
       }
     ]
   },
   "footer": {
     "motto": "Safe and Halal with Sharia",
     "copyright": "© {year} LKM Mitra Siswa Abadi SMKN 1 Bantul. All rights reserved."
+  },
+  "branding": {
+    "organization_name": "LKM Mitra Siswa Abadi",
+    "school_name": "SMKN 1 Bantul"
   }
 }

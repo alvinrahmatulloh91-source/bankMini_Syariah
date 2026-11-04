@@ -6,10 +6,11 @@
 
 interface Props {
   data: any;
+  branding: { organization_name: string; school_name: string };
   lang: string;
 }
 
-const { data, lang } = Astro.props;
+const { data, branding, lang } = Astro.props;
 ---
 
 <nav
@@ -28,8 +29,8 @@ const { data, lang } = Astro.props;
         </svg>
       </div>
       <div>
-        <span class="text-sm font-extrabold text-brand-green-dark leading-tight">LKM Mitra Siswa Abadi</span>
-        <p class="text-[9px] text-brand-text-secondary uppercase tracking-widest font-bold group-hover:text-brand-green transition-colors">SMKN 1 BANTUL</p>
+        <span class="text-sm font-extrabold text-brand-green-dark leading-tight">{branding.organization_name}</span>
+        <p class="text-[9px] text-brand-text-secondary uppercase tracking-widest font-bold group-hover:text-brand-green transition-colors">{branding.school_name}</p>
       </div>
     </a>
 

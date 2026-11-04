@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { data } = Astro.props;
+const items = data.items.filter((item: any) => item.published).sort((a: any, b: any) => a.order - b.order);
 ---
 
 <section class="py-24 bg-white overflow-hidden">
@@ -26,7 +27,7 @@ const { data } = Astro.props;
       </div>
 
       <div class="flex-1 space-y-4 reveal reveal-fade-left">
-        {data.items.map((item: any) => (
+        {items.map((item: any) => (
           <details class="group rounded-2xl border border-brand-border bg-brand-bg transition-colors duration-200 open:border-brand-green/20 open:bg-brand-green-light">
             <summary class="flex justify-between items-center p-6 cursor-pointer list-none rounded-2xl">
               <span class="text-lg font-black text-brand-green-dark group-open:text-brand-green transition-colors">

@@ -7,9 +7,10 @@
 interface Props {
   data: any;
   contactData: any;
+  lang: 'id' | 'en';
 }
 
-const { data, contactData } = Astro.props;
+const { data, contactData, lang } = Astro.props;
 ---
 
 <section id="location" class="py-24 bg-white relative overflow-hidden">
@@ -34,7 +35,7 @@ const { data, contactData } = Astro.props;
 
            <!-- Label Lokasi -->
               <div class="absolute bottom-8 left-8 right-8 p-6 bg-white rounded-2xl border border-brand-border shadow-md">
-              <p class="text-xs font-black text-brand-green uppercase tracking-widest mb-2">Posisi Ruangan</p>
+              <p class="text-xs font-black text-brand-green uppercase tracking-widest mb-2">{data.label}</p>
               <p class="text-sm font-bold text-brand-green-dark leading-relaxed">
                 {data.address}
               </p>
@@ -53,6 +54,11 @@ const { data, contactData } = Astro.props;
         <p class="text-xl text-brand-text-secondary font-medium leading-relaxed mb-10">
           {data.instruction}
         </p>
+        {data.map_link && (
+          <a class="mb-8 inline-flex min-h-11 items-center gap-2 self-start text-sm font-bold text-brand-green-dark underline decoration-brand-green/40 underline-offset-4 hover:text-brand-orange-dark" href={data.map_link} target="_blank" rel="noopener noreferrer">
+            {lang === 'en' ? 'Open map' : 'Buka peta'} <span aria-hidden="true">↗</span>
+          </a>
+        )}
 
         <!-- List Kontak -->
         <div id="contact" class="space-y-6">

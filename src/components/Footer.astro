@@ -7,10 +7,12 @@
 interface Props {
   data: any;
   navData: any;
+  branding: { organization_name: string; school_name: string };
+  contactData: { school_address: string; school_email: string };
   lang: string;
 }
 
-const { data, navData, lang } = Astro.props;
+const { data, navData, branding, contactData, lang } = Astro.props;
 const isIndonesian = lang === 'id';
 const currentYear = new Date().getFullYear();
 const copyright = data.copyright.replace('{year}', currentYear.toString());
@@ -31,8 +33,8 @@ const copyright = data.copyright.replace('{year}', currentYear.toString());
             </svg>
           </div>
           <div>
-            <h2 class="text-xl font-black leading-tight">LKM Mitra Siswa Abadi</h2>
-            <p class="text-[10px] text-brand-green-soft uppercase tracking-[0.3em] font-black group-hover:text-brand-orange transition-colors">SMKN 1 BANTUL</p>
+            <h2 class="text-xl font-black leading-tight">{branding.organization_name}</h2>
+            <p class="text-[10px] text-brand-green-soft uppercase tracking-[0.3em] font-black group-hover:text-brand-orange transition-colors">{branding.school_name}</p>
           </div>
         </a>
         <p class="text-brand-green-soft/70 text-lg font-medium leading-relaxed mb-10 max-w-md">
@@ -56,13 +58,13 @@ const copyright = data.copyright.replace('{year}', currentYear.toString());
 
       <!-- Info Sekolah -->
       <div class="lg:col-span-4">
-        <h4 class="text-sm font-black text-brand-orange uppercase tracking-[0.2em] mb-8">SMKN 1 Bantul</h4>
+        <h4 class="text-sm font-black text-brand-orange uppercase tracking-[0.2em] mb-8">{branding.school_name}</h4>
         <p class="text-brand-green-soft/70 text-sm font-bold leading-relaxed mb-6">
-          Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188
+          {contactData.school_address}
         </p>
         <div class="p-6 bg-white/5 rounded-2xl border border-white/5 group/email transition-colors hover:bg-white/10">
            <p class="text-[10px] text-brand-green uppercase tracking-widest font-black mb-2">{isIndonesian ? 'Email Sekolah' : 'School email'}</p>
-           <a class="text-sm font-bold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white transition-all" href="mailto:info@smkn1bantul.sch.id">info@smkn1bantul.sch.id</a>
+           <a class="text-sm font-bold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white transition-all" href={`mailto:${contactData.school_email}`}>{contactData.school_email}</a>
         </div>
       </div>
     </div>

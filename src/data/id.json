@@ -13,7 +13,9 @@
     "headline": "Aman dan Halal Bersama Syariah",
     "subheadline": "Melayani kebutuhan tabungan dan transaksi perbankan syariah sekaligus menjadi sarana pembelajaran praktik perbankan bagi siswa SMKN 1 Bantul.",
     "cta_primary": "Lihat Layanan Kami",
-    "cta_secondary": "Hubungi Kami via WhatsApp"
+    "cta_secondary": "Hubungi Kami via WhatsApp",
+    "image": "",
+    "image_alt": ""
   },
   "about": {
     "label": "Tentang Kami",
@@ -53,31 +55,48 @@
     "label": "Layanan Kami",
     "headline": "Produk dan Layanan Unggulan",
     "subheadline": "Solusi layanan perbankan yang mudah, aman, dan sesuai prinsip syariah.",
-    "bsi_agen": {
-      "title": "BSI Agen (Laku Pandai)",
-      "description": "Layanan utama yang dapat dimanfaatkan warga sekolah untuk berbagai kebutuhan transaksi.",
-      "items": [
-        "Setor tunai",
-        "Tarik tunai",
-        "Transfer antar bank",
-        "Pembayaran PDAM & BPJS",
-        "Pembayaran SPP Sekolah",
-        "Top up e-Wallet (OVO, GoPay, ShopeePay)",
-        "Pembelian token PLN & Pulsa"
-      ]
-    },
-    "tabungan": {
-      "title": "Tabungan Siswa",
-      "description": "Layanan tabungan khusus siswa dengan prinsip syariah yang murni.",
-      "features": [
-        "Prinsip Wadiah (Tanpa Bunga)",
-        "Tanpa Biaya Administrasi Bulanan",
-        "Setoran Awal hanya Rp10.000",
-        "Setoran Berikutnya minimal Rp5.000",
-        "Saldo Minimum Rp10.000",
-        "Biaya Penutupan Rekening Rp10.000"
-      ]
-    }
+    "cta": "Info Selengkapnya",
+    "items": [
+      {
+        "id": "bsi-agen",
+        "title": "BSI Agen (Laku Pandai)",
+        "description": "Layanan utama yang dapat dimanfaatkan warga sekolah untuk berbagai kebutuhan transaksi.",
+        "details": [
+          "Setor tunai",
+          "Tarik tunai",
+          "Transfer antar bank",
+          "Pembayaran PDAM & BPJS",
+          "Pembayaran SPP Sekolah",
+          "Top up e-Wallet (OVO, GoPay, ShopeePay)",
+          "Pembelian token PLN & Pulsa"
+        ],
+        "image": "",
+        "image_alt": "",
+        "icon": "bank",
+        "order": 1,
+        "featured": true,
+        "published": true
+      },
+      {
+        "id": "tabungan-siswa",
+        "title": "Tabungan Siswa",
+        "description": "Layanan tabungan khusus siswa dengan prinsip syariah yang murni.",
+        "details": [
+          "Prinsip Wadiah (Tanpa Bunga)",
+          "Tanpa Biaya Administrasi Bulanan",
+          "Setoran Awal hanya Rp10.000",
+          "Setoran Berikutnya minimal Rp5.000",
+          "Saldo Minimum Rp10.000",
+          "Biaya Penutupan Rekening Rp10.000"
+        ],
+        "image": "",
+        "image_alt": "",
+        "icon": "savings",
+        "order": 2,
+        "featured": false,
+        "published": true
+      }
+    ]
   },
   "space": {
     "eyebrow": "Jelajahi Bank Mini",
@@ -94,7 +113,15 @@
     "emptyTitle": "Foto ruang belum tersedia",
     "emptyText": "Pengelola dapat menambahkan foto asli ruang, area pelayanan, fasilitas, dan kegiatan praktik melalui CMS setelah CMS terhubung.",
     "categories": "Kategori dokumentasi yang dapat diisi",
-    "requestedCategories": ["Tampilan Ruangan", "Area Teller", "Customer Service", "Area Nasabah", "Fasilitas", "Praktik Perbankan", "Dokumentasi Kegiatan"],
+    "requestedCategories": [
+      "Tampilan Ruangan",
+      "Area Teller",
+      "Customer Service",
+      "Area Nasabah",
+      "Fasilitas",
+      "Praktik Perbankan",
+      "Dokumentasi Kegiatan"
+    ],
     "galleryFilterLabel": "Pilih kategori foto",
     "allCategories": "Semua",
     "openImage": "Buka foto",
@@ -157,15 +184,24 @@
     "label": "Lokasi Kami",
     "headline": "Temukan Lokasi Kami",
     "address": "Gedung sayap barat lapangan utama, lantai 2, ruang paling selatan, dekat tangga SMKN 1 Bantul.",
-    "instruction": "Silakan naik ke lantai 2 melalui tangga di sayap barat untuk menemukan ruang pelayanan kami."
+    "instruction": "Silakan naik ke lantai 2 melalui tangga di sayap barat untuk menemukan ruang pelayanan kami.",
+    "map_link": ""
   },
   "contact": {
     "headline": "Hubungi Pengelola",
     "whatsapp_message": "Halo, saya ingin bertanya mengenai layanan LKM Mitra Siswa Abadi Bank Mini SMKN 1 Bantul.",
     "people": [
-      { "name": "Ibu Ririh", "phone": "6281226842933" },
-      { "name": "Ibu Tantri", "phone": "6282133314485" }
-    ]
+      {
+        "name": "Ibu Ririh",
+        "phone": "6281226842933"
+      },
+      {
+        "name": "Ibu Tantri",
+        "phone": "6282133314485"
+      }
+    ],
+    "school_address": "Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188",
+    "school_email": "info@smkn1bantul.sch.id"
   },
   "faq": {
     "label": "FAQ",
@@ -174,24 +210,40 @@
     "items": [
       {
         "q": "Apa itu LKM Mitra Siswa Abadi?",
-        "a": "LKM Mitra Siswa Abadi adalah bank mini syariah di SMKN 1 Bantul yang berfungsi sebagai sarana praktik siswa sekaligus penyedia layanan perbankan sekolah."
+        "a": "LKM Mitra Siswa Abadi adalah bank mini syariah di SMKN 1 Bantul yang berfungsi sebagai sarana praktik siswa sekaligus penyedia layanan perbankan sekolah.",
+        "id": "faq-identity",
+        "order": 1,
+        "published": true
       },
       {
         "q": "Apa yang dimaksud dengan tabungan Wadiah?",
-        "a": "Wadiah adalah titipan murni. Di bank mini kami, ini berarti tabungan Anda aman, tidak ada bunga, dan tidak ada potongan biaya admin bulanan."
+        "a": "Wadiah adalah titipan murni. Di bank mini kami, ini berarti tabungan Anda aman, tidak ada bunga, dan tidak ada potongan biaya admin bulanan.",
+        "id": "faq-wadiah",
+        "order": 2,
+        "published": true
       },
       {
         "q": "Siapa saja yang dapat menjadi nasabah?",
-        "a": "Layanan kami terbuka untuk seluruh siswa, guru, dan karyawan di lingkungan SMKN 1 Bantul."
+        "a": "Layanan kami terbuka untuk seluruh siswa, guru, dan karyawan di lingkungan SMKN 1 Bantul.",
+        "id": "faq-customer",
+        "order": 3,
+        "published": true
       },
       {
         "q": "Kapan layanan teller tersedia?",
-        "a": "Teller kami siap melayani Anda pada hari sekolah, terutama pada jam-jam istirahat siswa."
+        "a": "Teller kami siap melayani Anda pada hari sekolah, terutama pada jam-jam istirahat siswa.",
+        "id": "faq-hours",
+        "order": 4,
+        "published": true
       }
     ]
   },
   "footer": {
     "motto": "Aman dan Halal Bersama Syariah",
     "copyright": "© {year} LKM Mitra Siswa Abadi SMKN 1 Bantul. All rights reserved."
+  },
+  "branding": {
+    "organization_name": "LKM Mitra Siswa Abadi",
+    "school_name": "SMKN 1 Bantul"
   }
 }

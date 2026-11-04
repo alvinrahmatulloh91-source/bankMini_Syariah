@@ -11,32 +11,38 @@ import FAQ from '@components/FAQ.astro';
 import Location from '@components/Location.astro';
 import Footer from '@components/Footer.astro';
 import RoomGallery from '@components/RoomGallery.astro';
+import ActivityDocumentation from '@components/ActivityDocumentation.astro';
 import { getCollection } from 'astro:content';
-import { siteContentSchema } from '@data/siteContentSchema';
-
-import rawData from '@data/en.json';
-const data = siteContentSchema.parse(rawData);
+import { siteContent } from '@data/siteContent';
+import { validateContentMedia } from '@data/validateContentMedia';
+const data = siteContent.en;
 const roomGallery = await getCollection('roomGallery');
+const activityDocumentation = await getCollection('activityDocumentation');
+validateContentMedia([
+  ...roomGallery.map((item) => item.data.image),
+  ...activityDocumentation.map((item) => item.data.image)
+]);
 ---
 
 <MainLayout
-  title="LKM Mitra Siswa Abadi - Sharia Mini Bank SMKN 1 Bantul"
+  title={`${data.branding.organization_name} - Sharia Mini Bank ${data.branding.school_name}`}
   description={data.hero.subheadline}
   lang="en"
 >
-  <Navbar data={data.nav} lang="en" />
+  <Navbar data={data.nav} branding={data.branding} lang="en" />
 
   <main>
     <Hero data={data.hero} lang="en" />
     <About data={data.about} />
     <Services data={data.services} />
     <RoomGallery data={data.space} address={data.location.address} lang="en" items={roomGallery} />
+    <ActivityDocumentation items={activityDocumentation} lang="en" />
     <ServiceProcess data={data.process} />
     <Advantages data={data.advantages} />
     <OperationInfo data={data.operation} />
     <FAQ data={data.faq} />
-    <Location data={data.location} contactData={data.contact} />
+    <Location data={data.location} contactData={data.contact} lang="en" />
   </main>
 
-  <Footer data={data.footer} navData={data.nav} lang="en" />
+  <Footer data={data.footer} navData={data.nav} branding={data.branding} contactData={data.contact} lang="en" />
 </MainLayout>
