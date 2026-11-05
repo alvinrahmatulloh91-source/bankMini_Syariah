@@ -35,6 +35,22 @@ describe('Site Content & Collections Integrity', () => {
     assert.doesNotThrow(() => siteContentSchema.parse(contentWithEmptyOptionalLists));
   });
 
+  it('accepts optional hero stats metadata', () => {
+    const contentWithHeroStats = {
+      ...rawId,
+      hero: {
+        ...rawId.hero,
+        stats: [
+          { value: '3.5K+', label: 'Transaksi', detail: 'Per bulan' },
+          { value: '100%', label: 'Syariah', detail: 'Halal dan aman' },
+          { value: '24/7', label: 'Pembelajaran', detail: 'Praktek siswa' }
+        ]
+      }
+    };
+
+    assert.doesNotThrow(() => siteContentSchema.parse(contentWithHeroStats));
+  });
+
   it('continues to require essential site copy', () => {
     const contentWithoutHeroHeadline = {
       ...rawId,

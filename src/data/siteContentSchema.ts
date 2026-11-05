@@ -33,6 +33,11 @@ export const siteContentSchema = z.object({
     subheadline: optionalText,
     cta_primary: optionalText,
     cta_secondary: optionalText,
+    stats: z.array(z.object({
+      value: text,
+      label: text,
+      detail: optionalText
+    })).default([]),
     image: mediaPath,
     image_alt: optionalText
   }).refine((hero) => isDecapDraftBuild || !hero.image || hero.image_alt.trim().length > 0, 'Hero image requires alternative text.'),

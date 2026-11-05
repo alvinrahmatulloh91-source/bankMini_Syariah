@@ -14,6 +14,11 @@
     "subheadline": "We provide savings and banking transaction services while giving SMKN 1 Bantul students a place to learn through practical banking experience.",
     "cta_primary": "Explore Our Services",
     "cta_secondary": "Contact Us on WhatsApp",
+    "stats": [
+      { "value": "3.5K+", "label": "Transactions", "detail": "per month" },
+      { "value": "100%", "label": "Sharia", "detail": "halal & secure" },
+      { "value": "24/7", "label": "Learning", "detail": "student practice" }
+    ],
     "image": "",
     "image_alt": ""
   },

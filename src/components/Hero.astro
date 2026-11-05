@@ -49,6 +49,18 @@ const { data, lang } = Astro.props;
           </div>
         )}
 
+        {data.stats?.length > 0 && (
+          <div class="mb-10 grid w-full max-w-xl gap-3 sm:grid-cols-3 lg:max-w-none">
+            {data.stats.map((stat) => (
+              <div class="rounded-2xl border border-white/15 bg-white/10 p-4 text-left shadow-lg shadow-brand-green-deep/10 backdrop-blur-sm">
+                <div class="mb-1 text-2xl font-black tracking-tight text-white md:text-3xl">{stat.value}</div>
+                <div class="text-sm font-bold text-brand-green-soft">{stat.label}</div>
+                {stat.detail && <div class="mt-1 text-xs text-brand-green-soft/80">{stat.detail}</div>}
+              </div>
+            ))}
+          </div>
+        )}
+
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-brand-green-soft/90 lg:justify-start">
           <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
