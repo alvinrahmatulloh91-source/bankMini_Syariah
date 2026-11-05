@@ -86,10 +86,15 @@ const { data, lang } = Astro.props;
                 <img class="h-full w-full object-cover" src={data.image} alt={data.image_alt || (lang === 'en' ? 'Bank Mini photo' : 'Foto Bank Mini')} fetchpriority="high" decoding="async" />
               </div>
             ) : (
-              <div class="mb-6 flex aspect-[4/3] items-center justify-center rounded-2xl border border-white/10 bg-brand-green-deep/40">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+              <div class="mb-6 flex aspect-[4/3] flex-col items-center justify-center gap-5 rounded-2xl border border-white/10 bg-white p-8">
+                <img
+                  class="h-auto w-full max-w-[90%] object-contain"
+                  src="/images/bank-mini/bsi-logo.png"
+                  alt={lang === 'en' ? 'Bank Syariah Indonesia logo, demo visual' : 'Logo Bank Syariah Indonesia, visual demo'}
+                  width="768"
+                  height="212"
+                  decoding="async"
+                />
               </div>
             )}
 
