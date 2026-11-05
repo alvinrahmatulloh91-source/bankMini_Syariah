@@ -50,15 +50,6 @@ collections:
               - { label: Deskripsi, name: subheadline, widget: text, required: false }
               - { label: Tombol utama, name: cta_primary, widget: string, required: false }
               - { label: Tombol kedua, name: cta_secondary, widget: string, required: false }
-              - label: Statistik utama
-                name: stats
-                widget: list
-                required: false
-                label_singular: Statistik
-                fields:
-                  - { label: Nilai, name: value, widget: string, required: false }
-                  - { label: Label, name: label, widget: string, required: false }
-                  - { label: Detail, name: detail, widget: string, required: false }
               - label: Foto hero
                 name: image
                 widget: image
@@ -266,15 +257,6 @@ collections:
               - { label: Description, name: subheadline, widget: text, required: false }
               - { label: Primary button, name: cta_primary, widget: string, required: false }
               - { label: Secondary button, name: cta_secondary, widget: string, required: false }
-              - label: Key metrics
-                name: stats
-                widget: list
-                required: false
-                label_singular: Metric
-                fields:
-                  - { label: Value, name: value, widget: string, required: false }
-                  - { label: Label, name: label, widget: string, required: false }
-                  - { label: Detail, name: detail, widget: string, required: false }
               - label: Hero photo
                 name: image
                 widget: image
