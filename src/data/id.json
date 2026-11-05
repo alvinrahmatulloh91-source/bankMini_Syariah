@@ -1,4 +1,20 @@
 {
+  "contact": {
+    "headline": "Hubungi Pengelola",
+    "whatsapp_message": "Halo, saya ingin bertanya mengenai layanan LKM Mitra Siswa Abadi Bank Mini SMKN 1 Bantul.",
+    "people": [
+      {
+        "name": "Ibu Ririh",
+        "phone": "6281226842933"
+      },
+      {
+        "name": "Ibu Tantri",
+        "phone": "6282133314485"
+      }
+    ],
+    "school_address": "Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188",
+    "school_email": "info@smkn1bantul.sch.id"
+  },
   "nav": {
     "home": "Beranda",
     "about": "Tentang Kami",
@@ -8,14 +24,73 @@
     "location": "Lokasi",
     "contact": "Kontak"
   },
-  "hero": {
-    "label": "Layanan Perbankan Syariah di SMKN 1 Bantul",
-    "headline": "Aman dan Halal Bersama Syariah",
-    "subheadline": "Melayani kebutuhan tabungan dan transaksi perbankan syariah sekaligus menjadi sarana pembelajaran praktik perbankan bagi siswa SMKN 1 Bantul.",
-    "cta_primary": "Lihat Layanan Kami",
-    "cta_secondary": "Hubungi Kami via WhatsApp",
+  "space": {
+    "roomDescription": "Bank Mini berada di gedung sayap barat lapangan utama, lantai 2, ruang paling selatan, dekat tangga. Foto ruang dan fasilitas akan ditampilkan setelah dokumentasi resmi tersedia.",
+    "galleryTitle": "Dokumentasi ruang",
+    "eyebrow": "Jelajahi Bank Mini",
+    "requestedCategories": [
+      "Tampilan Ruangan",
+      "Area Teller",
+      "Customer Service",
+      "Area Nasabah",
+      "Fasilitas",
+      "Praktik Perbankan",
+      "Dokumentasi Kegiatan"
+    ],
+    "galleryDescription": "Foto akan ditambahkan oleh pengelola setelah dokumentasi Bank Mini tersedia.",
+    "galleryFilterLabel": "Pilih kategori foto",
+    "emptyTitle": "Foto ruang belum tersedia",
+    "learningText": "Bank Mini berfungsi sebagai Teaching Factory dan lingkungan praktik perbankan. Pembelajaran menerapkan prinsip syariah dalam praktik perbankan, sejalan dengan misi LKM.",
+    "openImage": "Buka foto",
+    "next": "Foto berikutnya",
+    "learningLabel": "Pembelajaran praktik",
+    "previous": "Foto sebelumnya",
+    "close": "Tutup",
+    "title": "Lebih dekat dengan Bank Mini",
+    "categoryDisclaimer": "Kategori ini adalah panduan dokumentasi, bukan konfirmasi bahwa setiap fasilitas tersedia.",
+    "emptyText": "Pengelola dapat menambahkan foto asli ruang, area pelayanan, fasilitas, dan kegiatan praktik melalui CMS setelah CMS terhubung.",
+    "learningTitle": "Teaching Factory perbankan syariah",
+    "categories": "Kategori dokumentasi yang dapat diisi",
+    "description": "Kenali lingkungan pelayanan dan fasilitas pembelajaran perbankan syariah di SMKN 1 Bantul.",
+    "roomTitle": "Ruang layanan dan pembelajaran",
+    "allCategories": "Semua",
+    "locationLabel": "Lokasi"
+  },
+  "operation": {
+    "label": "Informasi Pelayanan",
+    "title": "Layanan Oleh Siswa Praktikan",
+    "description": "Customer Service dan Teller dilayani oleh siswa kelas XI LPS dan X LPS yang bertugas secara bergiliran sebagai bagian dari pembelajaran praktik perbankan.",
+    "schedule": "Pelayanan teller tersedia saat jam istirahat pada hari sekolah.",
     "image": "",
-    "image_alt": ""
+    "image_alt": "",
+    "practice_label": "Praktik Siswa",
+    "practice_title": "Belajar Profesional Sejak Sekolah"
+  },
+  "advantages": {
+    "label": "Keunggulan Kami",
+    "headline": "Mengapa Memilih Kami?",
+    "items": [
+      {
+        "title": "Prinsip Syariah",
+        "description": "Semua transaksi dijalankan sesuai dengan kaidah perbankan syariah yang halal.",
+        "icon": "sharia"
+      },
+      {
+        "title": "Sarana Edukasi",
+        "description": "Menjadi tempat praktik nyata bagi siswa untuk belajar dunia perbankan secara profesional.",
+        "icon": "education"
+      },
+      {
+        "title": "Lokasi Strategis",
+        "description": "Berada tepat di dalam lingkungan sekolah, memudahkan akses bagi seluruh warga sekolah.",
+        "icon": "location"
+      },
+      {
+        "title": "Bebas Biaya Admin",
+        "description": "Khusus untuk tabungan siswa, tidak ada potongan biaya administrasi setiap bulannya.",
+        "icon": "fees"
+      }
+    ]
   },
   "about": {
     "label": "Tentang Kami",
@@ -51,44 +126,6 @@
       "text": "Aman dan Halal Bersama Syariah."
     }
   },
-  "services": {
-    "label": "Layanan Kami",
-    "headline": "Produk dan Layanan Unggulan",
-    "subheadline": "Solusi layanan perbankan yang mudah, aman, dan sesuai prinsip syariah.",
-    "cta": "Info Selengkapnya"
-  },
-  "space": {
-    "eyebrow": "Jelajahi Bank Mini",
-    "title": "Lebih dekat dengan Bank Mini",
-    "description": "Galeri ini memakai foto stok sebagai ilustrasi demo, bukan dokumentasi ruang atau fasilitas Bank Mini SMKN 1 Bantul.",
-    "roomTitle": "Ruang layanan dan pembelajaran",
-    "roomDescription": "Bank Mini berada di gedung sayap barat lapangan utama, lantai 2, ruang paling selatan, dekat tangga. Foto ruang dan fasilitas akan ditampilkan setelah dokumentasi resmi tersedia.",
-    "learningLabel": "Pembelajaran praktik",
-    "learningTitle": "Teaching Factory perbankan syariah",
-    "learningText": "Bank Mini berfungsi sebagai Teaching Factory dan lingkungan praktik perbankan. Pembelajaran menerapkan prinsip syariah dalam praktik perbankan, sejalan dengan misi LKM.",
-    "locationLabel": "Lokasi",
-    "galleryTitle": "Dokumentasi ruang",
-    "galleryDescription": "Foto demo untuk mengilustrasikan layanan dan kegiatan; bukan foto lokasi atau dokumentasi resmi Bank Mini.",
-    "emptyTitle": "Foto ruang belum tersedia",
-    "emptyText": "Pengelola dapat menambahkan foto asli ruang, area pelayanan, fasilitas, dan kegiatan praktik melalui CMS setelah CMS terhubung.",
-    "categories": "Kategori dokumentasi yang dapat diisi",
-    "requestedCategories": [
-      "Tampilan Ruangan",
-      "Area Teller",
-      "Customer Service",
-      "Area Nasabah",
-      "Fasilitas",
-      "Praktik Perbankan",
-      "Dokumentasi Kegiatan"
-    ],
-    "galleryFilterLabel": "Pilih kategori foto",
-    "allCategories": "Semua",
-    "openImage": "Buka foto",
-    "close": "Tutup",
-    "previous": "Foto sebelumnya",
-    "next": "Foto berikutnya",
-    "categoryDisclaimer": "Semua gambar galeri ini adalah foto demo, bukan dokumentasi lokasi atau bukti ketersediaan fasilitas."
-  },
   "process": {
     "label": "Alur Pelayanan",
     "headline": "Bagaimana Cara Menggunakan Layanan?",
@@ -111,42 +148,6 @@
       }
     ]
   },
-  "advantages": {
-    "label": "Keunggulan Kami",
-    "headline": "Mengapa Memilih Kami?",
-    "items": [
-      {
-        "title": "Prinsip Syariah",
-        "description": "Semua transaksi dijalankan sesuai dengan kaidah perbankan syariah yang halal.",
-        "icon": "sharia"
-      },
-      {
-        "title": "Sarana Edukasi",
-        "description": "Menjadi tempat praktik nyata bagi siswa untuk belajar dunia perbankan secara profesional.",
-        "icon": "education"
-      },
-      {
-        "title": "Lokasi Strategis",
-        "description": "Berada tepat di dalam lingkungan sekolah, memudahkan akses bagi seluruh warga sekolah.",
-        "icon": "location"
-      },
-      {
-        "title": "Bebas Biaya Admin",
-        "description": "Khusus untuk tabungan siswa, tidak ada potongan biaya administrasi setiap bulannya.",
-        "icon": "fees"
-      }
-    ]
-  },
-  "operation": {
-    "label": "Informasi Pelayanan",
-    "title": "Layanan Oleh Siswa Praktikan",
-    "description": "Customer Service dan Teller dilayani oleh siswa kelas XI LPS dan X LPS yang bertugas secara bergiliran sebagai bagian dari pembelajaran praktik perbankan.",
-    "schedule": "Pelayanan teller tersedia saat jam istirahat pada hari sekolah.",
-    "image": "",
-    "image_alt": "",
-    "practice_label": "Praktik Siswa",
-    "practice_title": "Belajar Profesional Sejak Sekolah"
-  },
   "location": {
     "label": "Lokasi Kami",
     "headline": "Temukan Lokasi Kami",
@@ -154,33 +155,32 @@
     "instruction": "Silakan naik ke lantai 2 melalui tangga di sayap barat untuk menemukan ruang pelayanan kami.",
     "map_link": ""
   },
-  "contact": {
-    "headline": "Hubungi Pengelola",
-    "whatsapp_message": "Halo, saya ingin bertanya mengenai layanan LKM Mitra Siswa Abadi Bank Mini SMKN 1 Bantul.",
-    "people": [
-      {
-        "name": "Ibu Ririh",
-        "phone": "6281226962933"
-      },
-      {
-        "name": "Ibu Tantri",
-        "phone": "628212024465"
-      }
-    ],
-    "school_address": "Jl. Bantul KM 7, Sewon, Bantul, Daerah Istimewa Yogyakarta 55188",
-    "school_email": "info@smkn1bantul.sch.id"
-  },
   "faq": {
     "label": "FAQ",
     "headline": "Pertanyaan yang Sering Diajukan",
     "description": "Informasi tentang layanan, tabungan, dan jam pelayanan Bank Mini."
+  },
+  "hero": {
+    "label": "Layanan Perbankan Syariah di SMKN 1 Bantul",
+    "headline": "Aman dan Halal Bersama Syariah",
+    "subheadline": "Melayani kebutuhan tabungan dan transaksi perbankan syariah sekaligus menjadi sarana pembelajaran praktik perbankan bagi siswa SMK Negeri 1 Bantul.",
+    "cta_primary": "Lihat Layanan Kami",
+    "cta_secondary": "Hubungi Kami via WhatsApp",
+    "image": "/images/bank-mini/pasted-file.webp",
+    "image_alt": ""
   },
   "footer": {
     "motto": "Aman dan Halal Bersama Syariah",
     "copyright": "© {year} LKM Mitra Siswa Abadi SMKN 1 Bantul. All rights reserved."
   },
   "branding": {
-    "organization_name": "LKM Mitra Siswa Abadi",
+    "organization_name": "LKM Mitra Siswa Abadi ",
     "school_name": "SMKN 1 Bantul"
+  },
+  "services": {
+    "label": "Layanan Kami",
+    "headline": "Produk dan Layanan Unggulan",
+    "subheadline": "Solusi layanan perbankan yang mudah, aman, dan sesuai prinsip syariah.",
+    "cta": "Info Selengkapnya"
   }
 }
